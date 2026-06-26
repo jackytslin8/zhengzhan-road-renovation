@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中光電 (5371) 無人機投資分析報告</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 20px auto; padding: 0 20px; background: #f5f5f5; color: #333; line-height: 1.8; }
+  h1 { text-align: center; border-bottom: 3px solid #2c3e50; padding-bottom: 10px; }
+  h2 { color: #2c3e50; border-left: 4px solid #3498db; padding-left: 10px; margin-top: 30px; }
+  h3 { color: #34495e; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  th { background: #2c3e50; color: #fff; padding: 10px; text-align: left; }
+  td { padding: 8px 10px; border-bottom: 1px solid #eee; }
+  tr:hover { background: #f9f9f9; }
+  .total { font-weight: bold; background: #ecf0f1 !important; }
+  .good { color: #27ae60; font-weight: bold; }
+  .warn { color: #e67e22; font-weight: bold; }
+  .bad { color: #e74c3c; font-weight: bold; }
+  .section { background: #fff; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .summary-box { display: flex; flex-wrap: wrap; gap: 15px; margin: 15px 0; }
+  .summary-item { flex: 1; min-width: 180px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center; }
+  .summary-item .label { font-size: 14px; color: #666; }
+  .summary-item .value { font-size: 22px; font-weight: bold; margin-top: 5px; }
+  .note { background: #fff3cd; padding: 12px; border-radius: 5px; border-left: 4px solid #ffc107; margin: 15px 0; }
+  .risk { background: #f8d7da; padding: 12px; border-radius: 5px; border-left: 4px solid #dc3545; margin: 15px 0; }
+  .chance { background: #d4edda; padding: 12px; border-radius: 5px; border-left: 4px solid #28a745; margin: 15px 0; }
+  .timeline { position: relative; padding-left: 30px; margin: 15px 0; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: #3498db; }
+  .timeline-item { position: relative; margin-bottom: 15px; }
+  .timeline-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #3498db; }
+  .timeline-item.done::before { background: #27ae60; }
+  .timeline-item.waiting::before { background: #e67e22; }
+  .timeline-item.future::before { background: #95a5a6; }
+  .highlight { background: #ffeaa7; padding: 2px 6px; border-radius: 3px; }
+  .arrow { text-align: center; font-size: 24px; color: #3498db; margin: 10px 0; }
+</style>
+</head>
+<body>
+
+<h1>📋 中光電 (5371) 無人機投資分析</h1>
+<p style="text-align:center; color:#666;">日期：2026/06/26 ｜ 整理：給太太看的簡單版</p>
+
+<div class="section">
+<h2>🤔 這是在講什麼？</h2>
+<p>簡單說，<strong>政府要買大量無人機</strong>，而<strong>中光電</strong>這家公司已經拿到第一批訂單，正在等第二批更大的訂單。</p>
+<p>這就像政府要蓋很多房子，先發包給建商做第一批，建商賺到錢了，股價就會漲。現在第一批快做完了，大家都在等第二批更大宗的發包消息。</p>
+</div>
+
+<div class="section">
+<h2>🏭 公司是誰？</h2>
+<table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td>公司名稱</td><td>中強光電（中光電）</td></tr>
+  <tr><td>股票代號</td><td>5371（上櫃）</td></tr>
+  <tr><td>原本做什麼</td><td>面板背光模組（電視、電腦螢幕的零件）</td></tr>
+  <tr><td>現在做什麼</td><td>背光模組 ＋ <span class="highlight">軍用無人機</span></td></tr>
+  <tr><td>無人機子公司</td><td>中光電智能機器人（CiRC）</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>💰 政府買無人機的故事</h2>
+
+<h3>第一批（已經拿到，正在出貨）</h3>
+<table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td>得標時間</td><td>2024 年底</td></tr>
+  <tr><td>數量</td><td>3,037 架</td></tr>
+  <tr><td>金額</td><td>22 億元</td></tr>
+  <tr><td>出貨進度</td><td>已出貨 6 成，預計 2026 Q3 全部交完</td></tr>
+  <tr><td>狀態</td><td class="good">✅ 確定，錢會入帳</td></tr>
+</table>
+
+<h3>第二批（還沒確定，等消息中）</h3>
+<table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td>數量</td><td>48,750 架（比第一批多 16 倍！）</td></tr>
+  <tr><td>金額</td><td>700 億元以上</td></tr>
+  <tr><td>狀態</td><td class="warn">⏳ 已開標，等決標公告</td></tr>
+  <tr><td>預計時間</td><td>2026 下半年放量出貨</td></tr>
+</table>
+
+<h3>第三批（更遠的未來）</h3>
+<table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td>名稱</td><td>國防自主無人載具採購特別條例</td></tr>
+  <tr><td>金額</td><td>2,100 億元</td></tr>
+  <tr><td>期間</td><td>2026/08 ~ 2031/12</td></tr>
+  <tr><td>狀態</td><td class="warn">⏳ 行政院已通過，等立法院審議</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>📈 股價怎麼變化？</h2>
+
+<div class="timeline">
+  <div class="timeline-item done">
+    <strong>2024 年中（50~55 元）</strong><br>
+    政府宣布要發展無人機產業，公司開始準備投標。<br>
+    <span style="color:#666;">💡 這時候買 = 最便宜，但不確定會不會得標</span>
+  </div>
+  <div class="timeline-item done">
+    <strong>2024/12 得標公告（最高 97.9 元）</strong><br>
+    確定拿到第一批 22 億訂單！股價直接噴上去。<br>
+    <span style="color:#666;">💡 這時候已經漲了快一倍</span>
+  </div>
+  <div class="timeline-item done">
+    <strong>2025~2026 初（最高 123.5 元）</strong><br>
+    持續出貨，市場期待第二批標案，股價繼續漲。
+  </div>
+  <div class="timeline-item">
+    <strong>2026/05 立法院砍預算（跌到 72 元）</strong><br>
+    立法院把國防預算從 1.25 兆砍到 7,800 億，國產無人機被排除。<br>
+    <span style="color:#666;">💡 市場擔心第二批訂單會縮水，股價下跌</span>
+  </div>
+  <div class="timeline-item waiting">
+    <strong>現在（約 72 元）</strong><br>
+    等待第二批決標公告 + 2,100 億特別條例進度。
+  </div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-item">
+    <div class="label">得標前</div>
+    <div class="value" style="color:#666;">~50 元</div>
+  </div>
+  <div class="summary-item">
+    <div class="label">得標後最高</div>
+    <div class="value good">123.5 元</div>
+  </div>
+  <div class="summary-item">
+    <div class="label">現在</div>
+    <div class="value" style="color:#3498db;">~72 元</div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h2>🔍 公開資料怎麼說？</h2>
+<p>我們不需要「內線消息」，政府的公開資料就能告訴我們很多：</p>
+<table>
+  <tr><th>資料來源</th><th>能看到什麼</th><th>去哪裡查</th></tr>
+  <tr><td>政府電子採購網</td><td>標案公告、誰得標</td><td>web.pcc.gov.tw</td></tr>
+  <tr><td>公開資訊觀測站</td><td>公司公告、營收、法說會</td><td>mops.twse.com.tw</td></tr>
+  <tr><td>立法院</td><td>法案進度、預算審議</td><td>ly.gov.tw</td></tr>
+  <tr><td>新聞</td><td>政策動態、分析師評等</td><td>Google 搜尋</td></tr>
+</table>
+
+<div class="note">
+  <strong>📌 重要發現</strong>：歷史上，政府標案公告前 3~6 個月就有公開訊號了。不需要內線，持續追蹤公開資料就能提前掌握。
+</div>
+</div>
+
+<div class="section">
+<h2>📊 分析師怎麼看？</h2>
+<table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td>評等</td><td class="good">買進</td></tr>
+  <tr><td>目標價</td><td>99.6 元（目前 72 元，上漲空間約 38%）</td></tr>
+  <tr><td>今年 EPS</td><td class="bad">-0.91 元（虧損）</td></tr>
+  <tr><td>明年 EPS</td><td class="good">+1.75 元（轉盈）</td></tr>
+</table>
+<p>意思是：<strong>今年還在虧錢</strong>（因為舊的面板事業不好），但<strong>明年有望轉虧為盈</strong>（因為無人機訂單開始貢獻營收）。</p>
+</div>
+
+<div class="section">
+<h2>⚖️ 優點和風險</h2>
+
+<div class="chance">
+<strong>✅ 優點：</strong>
+<ul>
+  <li>已經拿到第一批標案，有實際出貨經驗</li>
+  <li>第二批標案規模更大（700 億 vs 22 億）</li>
+  <li>2,100 億特別條例如果通過，長期訂單有保障</li>
+  <li>美國市場也有機會（已和 5 家美商洽談）</li>
+  <li>產能規劃從每月 1,000 台擴到 5,000 台</li>
+</ul>
+</div>
+
+<div class="risk">
+<strong>⚠️ 風險：</strong>
+<ul>
+  <li>第二批標案得標結果不確定（可能只拿到一部分）</li>
+  <li>立法院砍預算，國產無人機預算被削減</li>
+  <li>面板本業還在谷底，短期很難靠無人機 alone 獲利</li>
+  <li>2,100 億特別條例還在立法院，可能被砍或延後</li>
+  <li>股價已經從 50 元漲到 72 元，部分利多已反映</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2>💡 我們的觀察重點</h2>
+<p>不需要每天盯盤，只需要關注這幾件大事：</p>
+<table>
+  <tr><th>事件</th><th>重要性</th><th>預計時間</th></tr>
+  <tr><td>第二批標案決標公告</td><td class="bad">🔴 最重要</td><td>2026 Q3</td></tr>
+  <tr><td>2,100 億特別條例三讀</td><td class="bad">🔴 重要</td><td>待立法院</td></tr>
+  <tr><td>月營收公告</td><td class="warn">🟡 觀察</td><td>每月 10 號前</td></tr>
+  <tr><td>法說會</td><td class="warn">🟡 觀察</td><td>每季一次</td></tr>
+  <tr><td>美商合作公告</td><td class="good">🟢 加分</td><td>隨時</td></tr>
+</table>
+
+<p><strong>已設定自動監控</strong>：每 6 小時自動搜尋最新消息，有重大進展會立刻通知。</p>
+</div>
+
+<div class="section">
+<h2>🎯 總結</h2>
+<table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td>公司在做什麼</td><td>幫政府做無人機</td></tr>
+  <tr><td>第一批訂單</td><td>22 億，快做完了</td></tr>
+  <tr><td>第二批訂單</td><td>700+ 億，等決標中</td></tr>
+  <tr><td>現在股價</td><td>約 72 元</td></tr>
+  <tr><td>分析師目標價</td><td>99.6 元</td></tr>
+  <tr><td>關鍵催化劑</td><td>第二批決標 + 特別條例通過</td></tr>
+  <tr><td>最大風險</td><td>預算被砍、得標不確定</td></tr>
+  <tr><td>我們在做什麼</td><td>持續追蹤公開資料，等消息</td></tr>
+</table>
+
+<div class="note">
+  <strong>⚠️ 免責聲明</strong>：這份報告只是我們的觀察和整理，不是投資建議。投資一定有風險，股票可能漲也可能跌。任何投資決定請自行判斷。
+</div>
+</div>
+
+</body>
+</html>
