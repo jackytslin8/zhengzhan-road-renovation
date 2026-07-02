@@ -7,17 +7,17 @@
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 700px; margin: 20px auto; padding: 0 20px; background: #f5f5f5; color: #333; }
   h1 { text-align: center; border-bottom: 3px solid #2c3e50; padding-bottom: 10px; }
-  table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
   th { background: #2c3e50; color: #fff; padding: 10px; text-align: left; }
   td { padding: 10px; border-bottom: 1px solid #eee; }
   .total { font-weight: bold; background: #ecf0f1 !important; }
-  .section { background: #fff; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .sub { padding-left: 30px; color: #555; font-size: 14px; }
+  .section { background: #fff; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
   .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; color: #fff; }
   .badge-partial { background: #f39c12; }
   .back { display: inline-block; margin-bottom: 15px; color: #3498db; text-decoration: none; }
   .back:hover { text-decoration: underline; }
-  .note { background: #fff3cd; padding: 10px; border-radius: 5px; border-left: 4px solid #ffc107; margin: 10px 0; }
-  .warning { color: #e74c3c; }
+  .note { background: #d4edda; padding: 10px; border-radius: 5px; border-left: 4px solid #28a745; margin: 10px 0; }
   .paid { color: #27ae60; }
   .pending { color: #e67e22; }
 </style>
@@ -42,8 +42,8 @@
 <h2>付款紀錄</h2>
 <table>
   <tr><th>日期</th><th>期別</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2025/04/11</td><td>第一期</td><td class="paid">$100,000</td><td>轉帳</td><td>1F、4F浴室前期款</td></tr>
-  <tr><td>2025/09/02</td><td>第二期</td><td class="paid">$100,000</td><td>轉帳</td><td>泥作第二期款</tr>
+  <tr><td>2025/04/11</td><td>第一期</td><td class="paid">$100,000</td><td>轉帳</td><td>前期款</td></tr>
+  <tr><td>2025/09/02</td><td>第二期</td><td class="paid">$100,000</td><td>轉帳</td><td>第二期款</td></tr>
   <tr class="total"><td colspan="2">合計已付款</td><td class="paid">$200,000</td><td colspan="2">餘額 $174,950 待付</td></tr>
 </table>
 </div>
@@ -51,21 +51,23 @@
 <div class="section">
 <h2>工程明細</h2>
 <table>
-  <tr><th>#</th><th>項目</th><th>規格</th><th>數量</th><th>單價</th><th>金額</th></tr>
-  <tr><td>1</td><td>一樓浴室牆壁打粗底</td><td>做彈性水泥貼磁磚</td><td>6坪</td><td>$1,000</td><td>$6,000</td></tr>
-  <tr><td>2</td><td>右邊 牆</td><td></td><td>4坪</td><td>$11,000</td><td>$44,000</td></tr>
-  <tr><td>3</td><td>右邊 地</td><td></td><td>0.7坪</td><td>$11,000</td><td>$7,700</td></tr>
-  <tr><td>4</td><td>左邊 牆</td><td></td><td>3.4坪</td><td>$11,000</td><td>$37,400</td></tr>
-  <tr><td>5</td><td>左邊 地</td><td></td><td>0.5坪</td><td>$11,000</td><td>$5,500</td></tr>
-  <tr><td>6</td><td>流理台牆壁粉光</td><td></td><td>3坪</td><td>$5,000</td><td>$15,000</td></tr>
-  <tr><td>7</td><td>塑膠門</td><td>75×190</td><td>3組</td><td>$4,500</td><td>$13,500</td></tr>
-  <tr><td>8</td><td>四樓牆壁貼磁磚</td><td>25.6×8.8尺</td><td>6.25坪</td><td>$11,000</td><td>$68,750</td></tr>
-  <tr><td>9</td><td>四樓浴室地板</td><td>8.4×4.4尺</td><td>1坪</td><td>$11,000</td><td>$11,000</td></tr>
-  <tr><td>10</td><td>砌磚浴室牆</td><td>17.2×8.8尺</td><td>4.2坪</td><td>$12,000</td><td>$50,400</td></tr>
-  <tr><td>11</td><td>後面 屋頂地板</td><td>貼 40×40</td><td>6.2坪</td><td>$6,000</td><td>$37,200</td></tr>
-  <tr><td>12</td><td>前面 屋頂地板</td><td>打除、釘點焊網、摻七里石</td><td>13坪</td><td>$6,500</td><td>$84,500</td></tr>
-  <tr><td>13</td><td>浴室磁磚</td><td>牆貼30×60＋地貼30×30</td><td colspan="2">（含於上方各項目）</td><td>—</td></tr>
-  <tr class="total"><td colspan="5">合計（未稅）</td><td>$374,950</td></tr>
+  <tr><th>#</th><th>項目</th><th>數量</th><th>單價</th><th>金額</th></tr>
+  <tr><td>1</td><td><strong>一樓浴室</strong>（含牆壁打粗底＋壁地磚／彈性水泥貼磁磚）</td><td></td><td></td><td></td></tr>
+  <tr><td></td><td class="sub">右邊 牆</td><td>4坪</td><td>$11,000</td><td>$44,000</td></tr>
+  <tr><td></td><td class="sub">右邊 地</td><td>0.7坪</td><td>$11,000</td><td>$7,700</td></tr>
+  <tr><td></td><td class="sub">左邊 牆</td><td>3.4坪</td><td>$11,000</td><td>$37,400</td></tr>
+  <tr><td></td><td class="sub">左邊 地</td><td>0.5坪</td><td>$11,000</td><td>$5,500</td></tr>
+  <tr><td></td><td class="sub">（打粗底 6坪×$1,000 已含上方）</td><td>6坪</td><td>$1,000</td><td>$6,000</td></tr>
+  <tr class="total"><td></td><td colspan="3">一樓浴室 小計（14.6坪）</td><td>$100,600</td></tr>
+  <tr><td>2</td><td>流理台牆壁粉光</td><td>3坪</td><td>$5,000</td><td>$15,000</td></tr>
+  <tr><td>3</td><td>塑膠門 75×190</td><td>3組</td><td>$4,500</td><td>$13,500</td></tr>
+  <tr><td>4</td><td>四樓牆壁貼磁磚 25.6×8.8尺</td><td>6.25坪</td><td>$11,000</td><td>$68,750</td></tr>
+  <tr><td>5</td><td>四樓浴室地板 8.4×4.4尺</td><td>1坪</td><td>$11,000</td><td>$11,000</td></tr>
+  <tr><td>6</td><td>砌磚浴室牆 17.2×8.8尺</td><td>4.2坪</td><td>$12,000</td><td>$50,400</td></tr>
+  <tr><td>7</td><td>後面 屋頂地板 貼40×40</td><td>6.2坪</td><td>$6,000</td><td>$37,200</td></tr>
+  <tr><td>8</td><td>前面 屋頂地板 打除、釘點焊網、摻七里石</td><td>13坪</td><td>$6,500</td><td>$84,500</td></tr>
+  <tr><td>9</td><td>浴室磁磚 壁30×60＋地30×30</td><td colspan="2">（含於上方各項目）</td><td>—</td></tr>
+  <tr class="total"><td colspan="4">合計（未稅）</td><td>$374,950</td></tr>
 </table>
 </div>
 
@@ -78,8 +80,9 @@
 </table>
 </div>
 
-<div class="note" style="background:#d4edda; border-left-color:#28a745;">
-  ✅ <strong>已覆核</strong>：明細加總與估價單總額一致（$374,950），所有項目確認無誤。
+<div class="note">
+  ✅ <strong>已覆核</strong>：明細加總與估價單總額一致（$374,950）<br>
+  📐 <strong>浴室 14.6坪</strong>（含打粗底＋壁地磚）＝ $100,600
 </div>
 
 </body>
