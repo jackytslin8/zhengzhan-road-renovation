@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彭瑞良 泥作估價單明細</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 700px; margin: 20px auto; padding: 0 20px; background: #f5f5f5; color: #333; }
+  h1 { text-align: center; border-bottom: 3px solid #2c3e50; padding-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  th { background: #2c3e50; color: #fff; padding: 10px; text-align: left; }
+  td { padding: 10px; border-bottom: 1px solid #eee; }
+  .total { font-weight: bold; background: #ecf0f1 !important; }
+  .section { background: #fff; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; color: #fff; }
+  .badge-partial { background: #f39c12; }
+  .back { display: inline-block; margin-bottom: 15px; color: #3498db; text-decoration: none; }
+  .back:hover { text-decoration: underline; }
+  .note { background: #fff3cd; padding: 10px; border-radius: 5px; border-left: 4px solid #ffc107; margin: 10px 0; }
+  .warning { color: #e74c3c; }
+  .paid { color: #27ae60; }
+  .pending { color: #e67e22; }
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回修繕報告</a>
+
+<h1>📋 彭瑞良 泥作估價單</h1>
+
+<div class="section">
+<table>
+  <tr><th colspan="2">基本資訊</th></tr>
+  <tr><td><strong>日期</strong></td><td>113年11月19日（2024/11/19）</td></tr>
+  <tr><td><strong>客戶</strong></td><td>林先生</td></tr>
+  <tr><td><strong>工程</strong></td><td>苗栗市正展路22號</td></tr>
+  <tr><td><strong>狀態</strong></td><td><span class="badge badge-partial">部分付款</span> — 已付 $200,000 / $374,950</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>付款紀錄</h2>
+<table>
+  <tr><th>日期</th><th>期別</th><th>金額</th><th>方式</th><th>備註</th></tr>
+  <tr><td>2025/04/11</td><td>第一期</td><td class="paid">$100,000</td><td>轉帳</td><td>1F、4F浴室前期款</td></tr>
+  <tr><td>2025/09/02</td><td>第二期</td><td class="paid">$100,000</td><td>轉帳</td><td>第二期款</td></tr>
+  <tr class="total"><td colspan="2">合計已付款</td><td class="paid">$200,000</td><td colspan="2">餘額 $174,950 待付</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>工程明細</h2>
+<table>
+  <tr><th>#</th><th>項目</th><th>規格</th><th>數量</th><th>單價</th><th>金額</th></tr>
+  <tr><td>1</td><td>一樓浴室牆壁打粗底</td><td>做防水、泥貼磁磚</td><td>6坪</td><td>$1,000</td><td>$6,000</td></tr>
+  <tr><td>2</td><td>牆</td><td></td><td>4坪</td><td>$1,000</td><td>$4,000</td></tr>
+  <tr><td>3</td><td>右邊 地</td><td></td><td>0.9坪</td><td>$1,000</td><td>$900</td></tr>
+  <tr><td>4</td><td>左邊 牆</td><td></td><td>31.4坪</td><td>$1,000</td><td>$31,400</td></tr>
+  <tr><td>5</td><td>左邊 地</td><td></td><td>5.5坪</td><td>$1,000</td><td>$5,500</td></tr>
+  <tr><td>6</td><td>流理台牆壁粉光</td><td></td><td>3坪</td><td>$5,000</td><td>$15,000</td></tr>
+  <tr><td>7</td><td>壁砖</td><td>9寸 25×190 / 3組</td><td>3組</td><td>$4,500</td><td>$13,500</td></tr>
+  <tr><td>8</td><td>四樓牆壁貼磁磚</td><td>25×6R × 8.8尺</td><td>6.25坪</td><td>$11,000</td><td>$68,750</td></tr>
+  <tr><td>9</td><td>四樓浴室地板</td><td>8.4尺 × 4.4尺</td><td>1坪</td><td>$11,000</td><td>$11,000</td></tr>
+  <tr><td>10</td><td>砌砖浴室墙</td><td>17.2尺 × 8.1尺</td><td>41.2坪</td><td>—</td><td>$50,400</td></tr>
+  <tr><td>11</td><td>後面 屋頂地板</td><td>貼 40×40</td><td>6.2坪</td><td>$6,000</td><td>$37,200</td></tr>
+  <tr><td>12</td><td>前面 屋頂地板</td><td>打麻、釘5分坪钢、粉水泥石</td><td>13坪</td><td>$6,500</td><td>$84,500</td></tr>
+  <tr class="total"><td colspan="5">合計（未稅）</td><td>$328,150</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>備註 / 補充項目</h2>
+<ul>
+  <li>浴室牆壁貼 30×60 磁磚（估價單上另有列項，費用可能含於上方總額）</li>
+  <li>浴室地貼 30×30 磁磚（估價單上另有列項，費用可能含於上方總額）</li>
+  <li>不含粉（批土油漆不在內）</li>
+  <li>"2人下1空白"（意為兩位師傅施作，下方留空白）</li>
+</ul>
+</div>
+
+<div class="note">
+  ⚠️ <strong>數位化注意事項</strong>：
+  <ol style="margin:5px 0; padding-left:20px;">
+    <li><strong>砌砖浴室墙</strong>：數量欄位辨识為「41.2坪」，但金額 $50,400 對應單價約 $1,223/坪（與常見單價 $50/坪 差距大），<strong>需與彭師傅確認實際數量與單價</strong>。</li>
+    <li><strong>浴室磁磚</strong>：估價單下方另有「浴室牆壁貼30×60磁」與「浴室地貼30×30磁」列項但未見獨立金額，可能已含於上方 $374,950 總額。</li>
+    <li><strong>項目加總 vs 總額</strong>：可辨認項目合計 $328,150，與估價單總額 $374,950 有 <strong>$46,800 差額</strong>，可能為上述未辨識完整之磁磚項目或其他項目。</li>
+  </ol>
+  <strong>建議</strong>：这张估價單應為 Zhang 師傅 給的原始照片，如需精確建帳，建議拿原始紙本或詢問彭師傅確認。
+</div>
+
+<div class="section">
+<h2>摘要</h2>
+<table>
+  <tr><td>估價單總額</td><td class="total">$374,950</td></tr>
+  <tr><td>已付（2025/4/11 + 2025/9/2）</td><td class="paid">$200,000</td></tr>
+  <tr><td>待付餘額</td><td class="pending">$174,950</td></tr>
+</table>
+</div>
+
+</body>
+</html>
