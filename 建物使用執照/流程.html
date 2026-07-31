@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建物使用執照申請流程 — 苗栗縣政府</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --accent: #2563eb;
+            --accent-light: #dbeafe;
+            --text: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #16a34a;
+            --warning: #f59e0b;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #111827;
+                --card-bg: #1f2937;
+                --accent: #60a5fa;
+                --accent-light: #1e3a5f;
+                --text: #f9fafb;
+                --text-muted: #9ca3af;
+                --border: #374151;
+                --success: #4ade80;
+                --warning: #fbbf24;
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .info-card h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .info-card h2 .emoji { font-size: 1.3rem; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        table td:first-child {
+            font-weight: 600;
+            white-space: nowrap;
+            width: 120px;
+            color: var(--text-muted);
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 2px;
+            background: var(--accent);
+        }
+        .step {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .step::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 0.4rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--card-bg);
+        }
+        .step.done::before {
+            background: var(--success);
+        }
+        .step.pending::before {
+            background: var(--warning);
+        }
+        .step h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+        .step .date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+        .step .desc {
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        .step .docs {
+            margin-top: 0.5rem;
+            background: var(--accent-light);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+        }
+        .step .docs strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .step .docs ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+        .step .docs li {
+            margin-bottom: 0.2rem;
+        }
+        .photo-section {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .photo-section img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+        .photo-section .caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .badge-done { background: #dcfce7; color: #166534; }
+        .badge-pending { background: #fef3c7; color: #92400e; }
+        @media (prefers-color-scheme: dark) {
+            .badge-done { background: #14532d; color: #86efac; }
+            .badge-pending { background: #78350f; color: #fde68a; }
+        }
+        .note {
+            background: var(--accent-light);
+            border-left: 3px solid var(--accent);
+            padding: 0.75rem 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ 建物使用執照申請流程</h1>
+        <p class="subtitle">苗栗縣政府 — 正展路22號</p>
+
+        <!-- 建物資訊 -->
+        <div class="info-card">
+            <h2><span class="emoji">📋</span> 建物基本資訊</h2>
+            <table>
+                <tr><td>建物坐落</td><td>苗栗縣苗栗市正展路22號</td></tr>
+                <tr><td>所有權人</td><td>林宗憲</td></tr>
+                <tr><td>原始使用執照</td><td>66年苗建都字第249號</td></tr>
+                <tr><td>狀態</td><td>遺失，需申請補發</td></tr>
+            </table>
+        </div>
+
+        <!-- 申請流程 -->
+        <div class="info-card">
+            <h2><span class="emoji">📝</span> 申請流程（4 步驟）</h2>
+            <div class="timeline">
+
+                <!-- Step 1 -->
+                <div class="step done">
+                    <h3>Step 1：登報聲明作廢 <span class="badge badge-done">✓ 已完成</span></h3>
+                    <div class="date">📅 2026/07/30 完成</div>
+                    <div class="desc">
+                        因建物使用執照遺失，依規定需先刊登報紙聲明作廢。
+                    </div>
+                    <div class="docs">
+                        <strong>📍 辦理地點</strong>
+                        苗栗聯合報社（苗栗市中山路25號）
+                    </div>
+                    <div class="photo-section">
+                        <img src="登報照片.jpg" alt="聯合報登報聲明作廢照片" onclick="window.open(this.src)">
+                        <div class="caption">聯合報刊登之聲明作廢啟事（2026/07/30）</div>
+                    </div>
+                    <div class="note">
+                        ⚠️ 報紙需保留正本，後續送件時需繳交。
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step pending">
+                    <h3>Step 2：申請建物第一類謄本 <span class="badge badge-pending">待辦理</span></h3>
+                    <div class="desc">
+                        至地政事務所申請建物第一類登記謄本，作為後續申請使用執照之證明文件。
+                    </div>
+                    <div class="docs">
+                        <strong>📎 備妥文件</strong>
+                        <ul>
+                            <li>身分證</li>
+                            <li>印章</li>
+                            <li>建物所有權狀</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step pending">
+                    <h3>Step 3：申請建物使用執照 <span class="badge badge-pending">待辦理</span></h3>
+                    <div class="desc">
+                        攜帶全部文件至苗栗縣政府建築管理科，正式申請建物使用執照補發。
+                    </div>
+                    <div class="docs">
+                        <strong>📎 需提供文件</strong>
+                        <ul>
+                            <li>登報之報紙一張（Step 1）</li>
+                            <li>建物第一類謄本（Step 2）</li>
+                            <li>建物使用執照申請單（現場或官網下載填寫）</li>
+                            <li>身分證正反面影本</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step pending">
+                    <h3>Step 4：等通知領取 <span class="badge badge-pending">待辦理</span></h3>
+                    <div class="desc">
+                        送件後等待苗栗縣政府審核通知，攜帶證件至指定地點領取補發之建物使用執照。
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            最後更新：2026/07/31 | 正展路22號修繕專案
+        </footer>
+    </div>
+</body>
+</html>
