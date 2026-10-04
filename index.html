@@ -3,342 +3,414 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>正展路22號 修繕報告</title>
+<title>🏠 正展路22號 修繕報告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 20px auto; padding: 0 20px; background: #f5f5f5; color: #333; }
-  h1 { text-align: center; border-bottom: 3px solid #2c3e50; padding-bottom: 10px; }
-  h2 { color: #2c3e50; border-left: 4px solid #3498db; padding-left: 10px; }
-  h3 { color: #555; margin-top: 15px; }
-  table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-  th { background: #2c3e50; color: #fff; padding: 10px; text-align: left; }
-  td { padding: 8px 10px; border-bottom: 1px solid #eee; }
-  tr:hover { background: #f9f9f9; }
-  .total { font-weight: bold; background: #ecf0f1 !important; }
-  .paid { color: #27ae60; font-weight: bold; }
-  .pending { color: #e67e22; font-weight: bold; }
-  .warning { color: #e74c3c; font-weight: bold; }
-  .section { background: #fff; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-  .summary-box { display: flex; flex-wrap: wrap; gap: 15px; margin: 15px 0; }
-  .summary-item { flex: 1; min-width: 200px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center; }
-  .summary-item .label { font-size: 14px; color: #666; }
-  .summary-item .value { font-size: 24px; font-weight: bold; margin-top: 5px; }
-  .note { background: #fff3cd; padding: 10px; border-radius: 5px; border-left: 4px solid #ffc107; margin: 10px 0; }
-  a { color: #3498db; text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+    color: #2c3e50; min-height: 100vh; padding: 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  /* Header */
+  .header { text-align: center; padding: 30px 20px 20px; }
+  .header h1 { font-size: 28px; color: #1a365d; margin-bottom: 8px; }
+  .header .date { color: #718096; font-size: 14px; }
+  .header .badge {
+    display: inline-block; background: #ebf8ff; color: #2b6cb0;
+    border-radius: 20px; padding: 4px 16px; font-size: 13px; margin-top: 10px;
+    border: 1px solid #bee3f8;
+  }
+
+  /* Summary Cards */
+  .summary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin: 24px 0;
+  }
+  .card {
+    background: #fff; border-radius: 16px; padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+  .card .icon { font-size: 28px; margin-bottom: 8px; }
+  .card .label { font-size: 13px; color: #718096; margin-bottom: 4px; }
+  .card .value { font-size: 24px; font-weight: 800; }
+  .card .sub { font-size: 12px; color: #a0aec0; margin-top: 4px; }
+  .card.blue .value { color: #2b6cb0; }
+  .card.green .value { color: #27ae60; }
+  .card.orange .value { color: #e67e22; }
+  .card.red .value { color: #e74c3c; }
+  .card.purple .value { color: #805ad5; }
+
+  /* Section */
+  .section {
+    background: #fff; border-radius: 16px; padding: 24px;
+    margin: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 18px; color: #1a365d; margin-bottom: 16px;
+    padding-left: 12px; border-left: 4px solid #4299e1;
+  }
+  .chart-wrap { position: relative; width: 100%; }
+  .chart-half { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* Progress bars */
+  .progress-item { margin-bottom: 18px; }
+  .progress-item .top { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; }
+  .progress-item .top .name { font-weight: 600; }
+  .progress-item .top .amt { color: #718096; font-size: 13px; }
+  .bar-bg { height: 24px; background: #edf2f7; border-radius: 12px; overflow: hidden; display: flex; }
+  .bar-paid { background: linear-gradient(90deg, #48bb78, #38a169); height: 100%; border-radius: 12px 0 0 12px; transition: width 0.8s ease; }
+  .bar-pending { background: linear-gradient(90deg, #f6ad55, #ed8936); height: 100%; border-radius: 0 12px 12px 0; transition: width 0.8s ease; }
+  .bar-done { background: linear-gradient(90deg, #68d391, #48bb78); }
+  .pct { font-size: 12px; color: #718096; margin-top: 2px; }
+
+  /* Estimate cards */
+  .est-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .est-card {
+    border-radius: 12px; padding: 16px; border: 2px solid #e2e8f0;
+    transition: all 0.2s;
+  }
+  .est-card:hover { border-color: #4299e1; transform: translateY(-2px); }
+  .est-card .tag {
+    display: inline-block; font-size: 11px; border-radius: 10px;
+    padding: 2px 10px; margin-bottom: 8px; font-weight: 600;
+  }
+  .est-card .tag.unpaid { background: #feebc8; color: #c05621; }
+  .est-card .tag.partial { background: #e6fffa; color: #319795; }
+  .est-card .name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .est-card .desc { font-size: 12px; color: #718096; margin-bottom: 8px; line-height: 1.5; }
+  .est-card .amount { font-size: 20px; font-weight: 800; }
+  .est-card .meta { font-size: 11px; color: #a0aec0; margin-top: 4px; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
+  .tl-item { position: relative; margin-bottom: 14px; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -20px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #4299e1; border: 3px solid #ebf8ff;
+  }
+  .tl-item .tl-date { font-size: 12px; color: #a0aec0; }
+  .tl-item .tl-content { font-size: 14px; }
+  .tl-item .tl-content strong { color: #2c3e50; }
+  .tl-item .tl-amt { font-weight: 700; color: #38a169; }
+
+  /* Alert */
+  .alert {
+    border-radius: 12px; padding: 16px 20px; margin: 20px 0;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .alert.warn { background: #fffaf0; border: 1px solid #feecd2; }
+  .alert.info { background: #ebf8ff; border: 1px solid #bee3f8; }
+  .alert .alert-icon { font-size: 20px; }
+  .alert .alert-text { font-size: 14px; line-height: 1.6; }
+
+  /* Detail table (collapsible) */
+  .details-toggle {
+    background: #edf2f7; border: none; border-radius: 8px; padding: 8px 16px;
+    font-size: 13px; color: #4a5568; cursor: pointer; margin-top: 12px;
+    transition: background 0.2s;
+  }
+  .details-toggle:hover { background: #e2e8f0; }
+  .details-content { display: none; margin-top: 12px; }
+  .details-content.show { display: block; }
+  table.detail { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.detail th { background: #f7fafc; padding: 8px; text-align: left; color: #4a5568; border-bottom: 2px solid #e2e8f0; }
+  table.detail td { padding: 8px; border-bottom: 1px solid #edf2f7; }
+  table.detail tr.total td { font-weight: 800; background: #f7fafc; }
+
+  /* Footer */
+  .footer { text-align: center; color: #a0aec0; font-size: 12px; padding: 24px 0; }
+
+  @media (max-width: 600px) {
+    .chart-half { grid-template-columns: 1fr; }
+    .header h1 { font-size: 22px; }
+    .card .value { font-size: 20px; }
+  }
 </style>
 </head>
 <body>
+<div class="container">
 
-<h1>🏠 正展路22號 修繕報告</h1>
-<p style="text-align:center; color:#666;">更新日期：2026/10/04</p>
-
-<div class="summary-box">
-  <div class="summary-item">
-    <div class="label">永豐金餘額</div>
-    <div class="value" style="color:#3498db;">$540,000（2026-09-27 實額）</div>
+  <!-- Header -->
+  <div class="header">
+    <h1>🏠 正展路22號 修繕報告</h1>
+    <div class="date">最後更新：2026/10/04</div>
+    <div class="badge">📋 含 4 張泥作估價單彙整</div>
   </div>
-  <div class="summary-item">
-    <div class="label">已付款</div>
-    <div class="value paid">$1,396,200</div>
+
+  <!-- Summary Cards -->
+  <div class="summary-grid">
+    <div class="card blue">
+      <div class="icon">🏗️</div>
+      <div class="label">工程總價</div>
+      <div class="value">$2,240,910</div>
+      <div class="sub">含 7 大工程項目</div>
+    </div>
+    <div class="card green">
+      <div class="icon">✅</div>
+      <div class="label">已付款</div>
+      <div class="value">$1,396,200</div>
+      <div class="sub">含鷹架頭期款 $100,000</div>
+    </div>
+    <div class="card orange">
+      <div class="icon">⏳</div>
+      <div class="label">待付款</div>
+      <div class="value">$944,910</div>
+      <div class="sub">不含鷹架、小門窗（待報價）</div>
+    </div>
+    <div class="card red">
+      <div class="icon">🏦</div>
+      <div class="label">永豐金餘額</div>
+      <div class="value">$540,000</div>
+      <div class="sub">2026-09-27 實額</div>
+    </div>
   </div>
-  <div class="summary-item">
-    <div class="label">待付款</div>
-    <div class="value pending">$944,910+</div>
+
+  <!-- Alert -->
+  <div class="alert warn">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-text">
+      <strong>資金缺口約 $404,910</strong> — 永豐金餘額 $540,000 不足以支付全部待付款 $944,910。
+      另有鐵工小門窗戶、外牆鷹架尚未報價，實際金額會再增加。
+    </div>
   </div>
-  <div class="summary-item">
-    <div class="label">外牆鷹架（新增）</div>
-    <div class="value" style="color:#9b59b6;">待報價（已付 $100,000）</div>
+
+  <!-- Chart 1: 費用占比 -->
+  <div class="section">
+    <h2>📊 工程費用占比</h2>
+    <div class="chart-half">
+      <div class="chart-wrap"><canvas id="chartPie"></canvas></div>
+      <div>
+        <div class="progress-item">
+          <div class="top"><span class="name">🔩 鐵工（邱創貴）</span><span class="amt">$517,100</span></div>
+          <div class="bar-bg"><div class="bar-paid" style="width:58%"></div><div class="bar-pending" style="width:42%"></div></div>
+          <div class="pct">已付 $300,000（58%）· 待付 $317,100（42%）</div>
+        </div>
+        <div class="progress-item">
+          <div class="top"><span class="name">🧱 泥作（彭瑞良）</span><span class="amt">$826,120</span></div>
+          <div class="bar-bg"><div class="bar-paid" style="width:42%"></div><div class="bar-pending" style="width:58%"></div></div>
+          <div class="pct">已付 $350,000（42%）· 待付 $476,120（58%）· 含頂樓防水 $150,000 已結清</div>
+        </div>
+        <div class="progress-item">
+          <div class="top"><span class="name">🔌 水電（賴維權）</span><span class="amt">$403,500</span></div>
+          <div class="bar-bg"><div class="bar-paid" style="width:87%"></div><div class="bar-pending" style="width:13%"></div></div>
+          <div class="pct">已付 $350,000（87%）· 待付 $53,500（13%）</div>
+        </div>
+        <div class="progress-item">
+          <div class="top"><span class="name">🪟 鋁門窗</span><span class="amt">$298,190</span></div>
+          <div class="bar-bg"><div class="bar-paid" style="width:67%"></div><div class="bar-pending" style="width:33%"></div></div>
+          <div class="pct">已付 $200,000（67%）· 待付 $98,190（33%）</div>
+        </div>
+        <div class="progress-item">
+          <div class="top"><span class="name">🔌 水電（李安煥）</span><span class="amt">$113,000</span></div>
+          <div class="bar-bg"><div class="bar-paid bar-done" style="width:100%"></div></div>
+          <div class="pct">✅ 已結清</div>
+        </div>
+        <div class="progress-item">
+          <div class="top"><span class="name">⛏️ 打石 + 小舅</span><span class="amt">$83,000</span></div>
+          <div class="bar-bg"><div class="bar-paid bar-done" style="width:100%"></div></div>
+          <div class="pct">✅ 已結清（打石 $50,000 / 小舅 $33,000）</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="summary-item">
-    <div class="label">付完後剩餘</div>
-    <div class="value" style="color:#e74c3c;">不足 $404,910</div>
+
+  <!-- Chart 2: 付款進度 -->
+  <div class="section">
+    <h2>💰 各廠商付款進度</h2>
+    <div class="chart-wrap"><canvas id="chartBar"></canvas></div>
+  </div>
+
+  <!-- 泥作 4 張估價單 -->
+  <div class="section">
+    <h2>🧱 泥作估價單彙整（4 張 / 21 項）</h2>
+    <div class="est-grid">
+      <div class="est-card" style="border-color:#f6ad55; background:#fffaf0;">
+        <div class="tag unpaid">🔴 尚未付款</div>
+        <div class="name">No. 2-3F 廁所</div>
+        <div class="desc">二、三樓浴室泥作防水貼磚工程（牆面+地面）</div>
+        <div class="amount" style="color:#c05621;">$178,200</div>
+        <div class="meta">115/06/15 · 未稅 · 4 項</div>
+      </div>
+      <div class="est-card" style="border-color:#4fd1c5; background:#e6fffa;">
+        <div class="tag partial">🟡 部分付款</div>
+        <div class="name">No. 最先的</div>
+        <div class="desc">一樓浴室粉粗底、彈性防水、貼磁磚（含流理台粉光）</div>
+        <div class="amount" style="color:#319795;">$239,750</div>
+        <div class="meta">115年7月 · 含工料 · 已付 $200,000 · 6 項</div>
+      </div>
+      <div class="est-card" style="border-color:#f6ad55; background:#fffaf0;">
+        <div class="tag unpaid">🔴 尚未付款</div>
+        <div class="name">No. torl</div>
+        <div class="desc">頂樓及 3F 廚房地板打除、施作彈性水泥防水層</div>
+        <div class="amount" style="color:#c05621;">$206,550</div>
+        <div class="meta">115/03/30 · 含工料 · 3 項</div>
+      </div>
+      <div class="est-card" style="border-color:#f6ad55; background:#fffaf0;">
+        <div class="tag unpaid">🔴 尚未付款</div>
+        <div class="name">No. 化糞池</div>
+        <div class="desc">客廳挖水管、灌管溝混凝土、化糞池材料與多期點工</div>
+        <div class="amount" style="color:#c05621;">$51,620</div>
+        <div class="meta">115/08/28 · 含工料 · 8 項</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; padding:12px 16px; background:#f7fafc; border-radius:10px; font-size:14px;">
+      <strong>泥作合計 $676,120</strong> · 已付 $200,000 · <strong style="color:#c05621;">待付 $476,120</strong><br>
+      <span style="color:#718096; font-size:12px;">另：頂樓防水 $150,000 已結清（原估價 $374,950，部分項目未施作後重新整理）</span>
+    </div>
+    <button class="details-toggle" onclick="toggleDetails('masonry')">📋 展開/收起 完整估價明細</button>
+    <div class="details-content" id="masonry">
+      <table class="detail">
+        <tr><th>估價單</th><th>工程項目</th><th>數量</th><th>單價</th><th>金額</th></tr>
+        <tr><td rowspan="4">No. 2-3F 廁所</td><td>二樓浴室牆面（粗底+彈性防水+貼磚）</td><td>5.6坪</td><td>$13,500</td><td>$75,600</td></tr>
+        <tr><td>二樓浴室地面（洩水+彈性防水+貼磚）</td><td>1坪</td><td>$13,500</td><td>$13,500</td></tr>
+        <tr><td>三樓浴室牆面（粗底+彈性防水+貼磚）</td><td>5.6坪</td><td>$13,500</td><td>$75,600</td></tr>
+        <tr><td>三樓浴室地面（洩水+彈性防水+貼磚）</td><td>1坪</td><td>$13,500</td><td>$13,500</td></tr>
+        <tr class="total"><td></td><td>小計（未稅）</td><td></td><td></td><td>$178,200</td></tr>
+        <tr><td rowspan="6">No. 最先的</td><td>一樓浴室地面（右）</td><td>0.7坪</td><td>$11,000</td><td>$7,700</td></tr>
+        <tr><td>一樓浴室地面（左）</td><td>3.4坪</td><td>$11,000</td><td>$37,400</td></tr>
+        <tr><td>流理台泥作粉光</td><td>0.5坪</td><td>$11,000</td><td>$5,500</td></tr>
+        <tr><td>一樓浴室局部牆面貼磁磚</td><td>3坪</td><td>$5,000</td><td>$15,000</td></tr>
+        <tr><td>一樓浴室大面積牆面（粗底+彈性防水+貼磚）</td><td>15.34坪</td><td>$11,000</td><td>$168,750</td></tr>
+        <tr><td>工資/工序差額調節</td><td>1式</td><td>$5,400</td><td>$5,400</td></tr>
+        <tr class="total"><td></td><td>小計（含工料）</td><td></td><td></td><td>$239,750</td></tr>
+        <tr><td rowspan="2">No. torl</td><td>頂樓地板打除+彈性水泥</td><td>7.5坪</td><td>$8,500</td><td>$63,750</td></tr>
+        <tr><td>3F廚房地板打除+彈性水泥</td><td>16.8坪</td><td>$8,500</td><td>$142,800</td></tr>
+        <tr class="total"><td></td><td>小計（含工料）</td><td></td><td></td><td>$206,550</td></tr>
+        <tr><td rowspan="8">No. 化糞池</td><td>水泥與相關耗材</td><td>1式</td><td>$1,720</td><td>$1,720</td></tr>
+        <tr><td>客廳挖水管（大工）</td><td>1.5工</td><td>$3,500</td><td>$5,250</td></tr>
+        <tr><td>客廳挖水管（小工）</td><td>1.5工</td><td>$2,000</td><td>$3,000</td></tr>
+        <tr><td>灌管溝混凝土</td><td>1式</td><td>$3,500</td><td>$3,500</td></tr>
+        <tr><td>灌管溝工資（兩人）</td><td>2工</td><td>$1,500</td><td>$3,000</td></tr>
+        <tr><td>灌管溝鏟板</td><td>3片</td><td>$300</td><td>$900</td></tr>
+        <tr><td>配電管點工及多期工資</td><td>1式</td><td>$32,250</td><td>$32,250</td></tr>
+        <tr><td>鐵件五金配合項</td><td>1式</td><td>$2,000</td><td>$2,000</td></tr>
+        <tr class="total"><td></td><td>小計（含工料）</td><td></td><td></td><td>$51,620</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 付款時間軸 -->
+  <div class="section">
+    <h2>📅 付款時間軸</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-date">2024/08/17</div><div class="tl-content"><strong>李育堂（打石）</strong> · 現金 <span class="tl-amt">$30,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2024/12/29</div><div class="tl-content"><strong>陳德金（小舅）</strong> · 現金 <span class="tl-amt">$33,000</span> ✓ 結清</div></div>
+      <div class="tl-item"><div class="tl-date">2025/04/11</div><div class="tl-content"><strong>彭瑞良（泥作）</strong> · 轉帳 <span class="tl-amt">$100,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2025/06/27</div><div class="tl-content"><strong>李育堂（打石）</strong> · 現金 <span class="tl-amt">$20,000</span> ✓ 結清</div></div>
+      <div class="tl-item"><div class="tl-date">2025/09/02</div><div class="tl-content"><strong>彭瑞良（泥作）</strong> · 轉帳 <span class="tl-amt">$100,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2026/01/14</div><div class="tl-content"><strong>李安煥（水電前）</strong> · 現金 <span class="tl-amt">$113,000</span> ✓ 結清</div></div>
+      <div class="tl-item"><div class="tl-date">2026/05/01</div><div class="tl-content"><strong>賴維權（水電）</strong> · 轉帳 <span class="tl-amt">$200,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2026/05/26</div><div class="tl-content"><strong>鋁門窗</strong> · 轉帳 <span class="tl-amt">$100,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2026/06/06</div><div class="tl-content"><strong>彭瑞良（泥作）</strong> · 轉帳 <span class="tl-amt">$150,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2026/06/30</div><div class="tl-content"><strong>鋁門窗</strong> · 轉帳 <span class="tl-amt">$100,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2026/07/30</div><div class="tl-content"><strong>聯合報系（建物執照登報）</strong> · 現金 <span class="tl-amt">$200</span></div></div>
+      <div class="tl-item"><div class="tl-date">2026/08/07</div><div class="tl-content"><strong>賴維權（水電）</strong> · 轉帳 <span class="tl-amt">$150,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2026/08/12</div><div class="tl-content"><strong>邱創貴（鐵工）</strong> · 轉帳 <span class="tl-amt">$200,000</span></div></div>
+      <div class="tl-item"><div class="tl-date">2026/09/27</div><div class="tl-content"><strong>邱創貴（鐵工）</strong> · 轉帳 <span class="tl-amt">$100,000</span> 外牆鷹架頭期款</div></div>
+    </div>
+  </div>
+
+  <!-- Chart 3: 月度付款 -->
+  <div class="section">
+    <h2>📈 付款走勢（累計）</h2>
+    <div class="chart-wrap"><canvas id="chartLine"></canvas></div>
+  </div>
+
+  <div class="footer">
+    正展路22號修繕工程 · 資料整理 2026/10/04<br>
+    📋 泥作估價單 4 張（$676,120）· 付款 14 筆（$1,396,200）
   </div>
 </div>
 
-<div class="note">
-  ⚠️ <strong>注意</strong>：永豐金餘額 $540,000（2026-09-27）不足以支付全部待付款 $944,910，<strong>短少約 $404,910</strong>（不含鐵工小門窗戶、外牆鷹架未報價部分）。若有已付款尚未記錄，請告知以更新。
-</div>
+<script>
+function toggleDetails(id) {
+  document.getElementById(id).classList.toggle('show');
+}
 
-<div class="section">
-<h2>💰 已付款明細</h2>
-<table>
-  <tr><th>日期</th><th>對象</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2026/09/27</td><td>邱創貴（鐵工）</td><td class="paid">$100,000</td><td>轉帳</td><td>外牆鷹架頭期款（新增工程，待報價）</td></tr>
-  <tr><td>2026/08/12</td><td>邱創貴（鐵工）</td><td class="paid">$200,000</td><td>轉帳</td><td>頭期款</td></tr>
-  <tr><td>2025/04/11</td><td>彭瑞良（泥作）</td><td class="paid">$100,000</td><td>轉帳</td><td>第一期款 <a href="彭瑞良泥作估價單.html">📋</a></td></tr>
-  <tr><td>2025/09/02</td><td>彭瑞良（泥作）</td><td class="paid">$100,000</td><td>轉帳</td><td>第二期款 <a href="彭瑞良泥作估價單.html">📋</a></td></tr>
-  <tr><td>2026/06/06</td><td>彭瑞良（泥作）</td><td class="paid">$150,000</td><td>轉帳</td><td>工程款（結清）</td></tr>
-  <tr><td>2026/05/01</td><td>賴維權（水電）</td><td class="paid">$200,000</td><td>轉帳</td><td>第一期款 <a href="賴維權水電估價單.html">📋</a></td></tr>
-  <tr><td>2026/08/07</td><td>賴維權（水電）</td><td class="paid">$150,000</td><td>轉帳</td><td>第二期款</td></tr>
-  <tr><td>2026/01/14</td><td>李安煥（水電(前)）</td><td class="paid">$113,000</td><td>現金</td><td>已結清</td></tr>
-  <tr><td>2026/05/26</td><td>鋁門窗（鋁門窗）</td><td class="paid">$100,000</td><td>轉帳</td><td>第一期款</td></tr>
-  <tr><td>2026/06/30</td><td>鋁門窗（鋁門窗）</td><td class="paid">$100,000</td><td>轉帳</td><td>材料款</td></tr>
-  <tr><td>2024/08/17</td><td>李育堂（李壇主）（打石）</td><td class="paid">$30,000</td><td>現金</td><td>清運</td></tr>
-  <tr><td>2025/06/27</td><td>李育堂（李壇主）（打石）</td><td class="paid">$20,000</td><td>現金</td><td>清運</td></tr>
-  <tr><td>2024/12/29</td><td>陳德金（小舅）</td><td class="paid">$33,000</td><td>現金</td><td>已結清</td></tr>
-  <tr><td>2026/07/30</td><td>聯合報系苗栗分社</td><td class="paid">$200</td><td>現金</td><td>建物使用執照申請登報</td></tr>
-  <tr class="total"><td colspan="2">合計</td><td colspan="3" class="paid">$1,496,200（含外牆鷹架頭期款 $100,000）</td></tr>
-</table>
-</div>
+// Chart 1: Pie
+new Chart(document.getElementById('chartPie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['泥作 $826,120', '鐵工 $517,100', '水電(賴) $403,500', '鋁門窗 $298,190', '水電(李) $113,000', '打石+小舅 $83,000'],
+    datasets: [{
+      data: [826120, 517100, 403500, 298190, 113000, 83000],
+      backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#1abc9c', '#e74c3c'],
+      borderWidth: 3, borderColor: '#fff', hoverOffset: 8
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 12 }, padding: 10 } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            let total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+            let pct = (ctx.parsed / total * 100).toFixed(1);
+            return ctx.label + ' → ' + pct + '%';
+          }
+        }
+      }
+    }
+  }
+});
 
-<div class="section">
-<h2>⏳ 待付款明細</h2>
-<table>
-  <tr><th>項目</th><th>金額</th><th>狀態</th><th>備註</th></tr>
-  <tr><td>邱創貴（鐵工）</td><td class="pending">$317,100</td><td class="pending">待付</td><td>$517,100 - 已付$200,000</td></tr>
-  <tr><td>邱創貴（鐵工）外牆鷹架（新增）</td><td class="warning">待報價</td><td class="pending">待報價</td><td>2026-09-27 已付頭期款 $100,000（不含在上述待付總計）</td></tr>
-  <tr><td>彭瑞良（泥作，4 張估價單）</td><td class="pending">$476,120</td><td class="pending">待付</td><td>$676,120 - 已付$200,000（頂樓防水 $150,000 已結清）</td></tr>
-  <tr><td>賴維權（水電）</td><td class="pending">$53,500</td><td class="pending">待付</td><td>$403,500 - 已付$350,000</td></tr>
-  <tr><td>鋁門窗（鋁門窗）</td><td class="pending">$98,190</td><td class="pending">待付</td><td>$298,190 - 已付$200,000</td></tr>
-  <tr class="total"><td>待付合計</td><td colspan="3" class="pending">$944,910+（不含鐵工小門窗戶、外牆鷹架）</td></tr>
-</table>
-</div>
+// Chart 2: Bar
+new Chart(document.getElementById('chartBar'), {
+  type: 'bar',
+  data: {
+    labels: ['泥作\n(彭瑞良)', '鐵工\n(邱創貴)', '水電\n(賴維權)', '鋁門窗', '水電\n(李安煥)', '打石\n(李育堂)', '小舅\n(陳德金)'],
+    datasets: [
+      { label: '已付款', data: [350000, 300000, 350000, 200000, 113000, 50000, 33000], backgroundColor: '#48bb78', borderRadius: 6 },
+      { label: '待付款', data: [476120, 317100, 53500, 98190, 0, 0, 0], backgroundColor: '#f6ad55', borderRadius: 6 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    scales: {
+      x: { stacked: true, ticks: { font: { size: 11 } } },
+      y: {
+        stacked: true,
+        ticks: { callback: v => '$' + (v/10000) + '萬', font: { size: 11 } }
+      }
+    },
+    plugins: {
+      legend: { position: 'bottom' },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.parsed.y.toLocaleString() } }
+    }
+  }
+});
 
-
-<div class="section">
-<h2>🔩 鐵工（邱創貴）</h2>
-<table>
-  <tr><th>項目</th><th>金額</th></tr>
-  <tr><td>報價總額（既有三張估價單）</td><td><strong>$517,100</strong></td></tr>
-  <tr><td>新增工程：外牆鷹架</td><td class="warning">待報價</td></tr>
-  <tr><td>已付款</td><td class="paid">$300,000（既有 $200,000 + 鷹架頭期款 $100,000）</td></tr>
-  <tr><td>待付款</td><td><span class="pending">既有待付 $317,100 + 外牆鷹架（待報價）</span></td></tr>
-</table>
-<h3>估價明細</h3>
-<table>
-<tr><th>項目</th><th>金額</th><th>備註</th></tr>
-  <tr><td>估價單一：室內工程</td><td>$292,700</td><td>牆壁白鐵壁板78.9坪＋鷹架＋打矽立康</td></tr>
-  <tr><td>估價單二：洗衣間工程</td><td>$126,000</td><td>琉璃瓦（含3F鋼架）＋白鐵壁板（小門窗戶另計）</td></tr>
-  <tr><td>估價單三：3F牆壁+後面牆壁</td><td>$98,400</td><td>3F牆壁骨架12坪＋鷹架一式＋後面牆壁3.8坪</td></tr>
-  <tr><td>小門窗戶</td><td><span class="warning">另報</span></td><td>尚未報價</td></tr>
-  <tr><td>外牆鷹架（新增）</td><td><span class="warning">待報價</span></td><td>2026-09-27 已付頭期款 $100,000（不含在 $517,100 內）</td></tr>
-</table>
-<h3>付款記錄</h3>
-<table>
-<tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2026/08/12</td><td class="paid">$200,000</td><td>轉帳</td><td>頭期款</td></tr>
-  <tr><td>2026/09/27</td><td class="paid">$100,000</td><td>轉帳</td><td>外牆鷹架頭期款（新增工程）</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>🧱 泥作（彭瑞良）</h2>
-<table>
-  <tr><th>項目</th><th>金額</th></tr>
-  <tr><td>泥作估價（4 張合計）</td><td><strong>$676,120</strong></td></tr>
-  <tr><td>頂樓防水（另計）</td><td>$150,000 <span class="paid">✓ 已結清</span></td></tr>
-  <tr><td>已付款（泥作部分）</td><td class="paid">$200,000（總付 $350,000 - 頂樓防水 $150,000）</td></tr>
-  <tr><td>待付款</td><td><span class="pending">待付 $476,120</span></td></tr>
-</table>
-<div class="note">
-  📝 <strong>估價單演進</strong>：原估價 $374,950 → 部分項目未施作 → 重新整理為 4 張估價單合計 $676,120（已含修正版 $239,750）。頂樓防水 $150,000 已結清。
-</div>
-<p style="color:#666;">估價明細見下方「泥作估價單彙整」區塊（4 張完整明細）。</p>
-<h3>額外工程</h3>
-<table>
-<tr><th>項目</th><th>金額</th><th>備註</th></tr>
-  <tr><td>頂樓防水（含前後）</td><td class="paid">$150,000 ✓ 已結清</td><td>一式</td></tr>
-</table>
-<h3>付款記錄</h3>
-<table>
-<tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2025/04/11</td><td class="paid">$100,000</td><td>轉帳</td><td>第一期款</td></tr>
-  <tr><td>2025/09/02</td><td class="paid">$100,000</td><td>轉帳</td><td>第二期款</td></tr>
-  <tr><td>2026/06/06</td><td class="paid">$150,000</td><td>轉帳</td><td>工程款（結清）</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>🔌 水電（賴維權）</h2>
-<table>
-  <tr><th>項目</th><th>金額</th></tr>
-  <tr><td>報價總額</td><td><strong>$403,500</strong></td></tr>
-  <tr><td>已付款</td><td class="paid">$350,000</td></tr>
-  <tr><td>待付款</td><td><span class="pending">待付 $53,500</span></td></tr>
-</table>
-<h3>估價明細</h3>
-<table>
-<tr><th>項目</th><th>金額</th><th>備註</th></tr>
-  <tr><td>水電工程</td><td>$403,500</td><td>含全戶水電</td></tr>
-</table>
-<h3>付款記錄</h3>
-<table>
-<tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2026/05/01</td><td class="paid">$200,000</td><td>轉帳</td><td>第一期款</td></tr>
-  <tr><td>2026/08/07</td><td class="paid">$150,000</td><td>轉帳</td><td>第二期款</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>🔌 水電(前)（李安煥）</h2>
-<table>
-  <tr><th>項目</th><th>金額</th></tr>
-  <tr><td>報價總額</td><td><strong>$113,000</strong></td></tr>
-  <tr><td>已付款</td><td class="paid">$113,000</td></tr>
-  <tr><td>待付款</td><td><span class="paid">已結清 ✓</span></td></tr>
-</table>
-<h3>估價明細</h3>
-<table>
-<tr><th>項目</th><th>金額</th><th>備註</th></tr>
-  <tr><td>水電工程（前一個師傅）</td><td>$113,000</td><td>已結清</td></tr>
-</table>
-<h3>付款記錄</h3>
-<table>
-<tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2026/01/14</td><td class="paid">$113,000</td><td>現金</td><td>已結清</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>🪟 鋁門窗（鋁門窗）</h2>
-<table>
-  <tr><th>項目</th><th>金額</th></tr>
-  <tr><td>報價總額</td><td><strong>$298,190</strong></td></tr>
-  <tr><td>已付款</td><td class="paid">$200,000</td></tr>
-  <tr><td>待付款</td><td><span class="pending">待付 $98,190</span></td></tr>
-</table>
-<h3>估價明細</h3>
-<table>
-<tr><th>項目</th><th>金額</th><th>備註</th></tr>
-  <tr><td>鋁門窗工程</td><td>$298,190</td><td>含材料+施工</td></tr>
-</table>
-<h3>付款記錄</h3>
-<table>
-<tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2026/05/26</td><td class="paid">$100,000</td><td>轉帳</td><td>第一期款</td></tr>
-  <tr><td>2026/06/30</td><td class="paid">$100,000</td><td>轉帳</td><td>材料款</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>⛏️ 打石（李育堂（李壇主））</h2>
-<table>
-  <tr><th>項目</th><th>金額</th></tr>
-  <tr><td>報價總額</td><td><strong>$50,000</strong></td></tr>
-  <tr><td>已付款</td><td class="paid">$50,000</td></tr>
-  <tr><td>待付款</td><td><span class="paid">已結清 ✓</span></td></tr>
-</table>
-<h3>估價明細</h3>
-<table>
-<tr><th>項目</th><th>金額</th><th>備註</th></tr>
-  <tr><td>打石＋清運（無估價單）</td><td>$50,000</td><td>已結清</td></tr>
-</table>
-<h3>付款記錄</h3>
-<table>
-<tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2024/08/17</td><td class="paid">$30,000</td><td>現金</td><td>清運</td></tr>
-  <tr><td>2025/06/27</td><td class="paid">$20,000</td><td>現金</td><td>清運</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>👨‍👩‍👧 小舅（陳德金）</h2>
-<table>
-  <tr><th>項目</th><th>金額</th></tr>
-  <tr><td>報價總額</td><td><strong>$33,000</strong></td></tr>
-  <tr><td>已付款</td><td class="paid">$33,000</td></tr>
-  <tr><td>待付款</td><td><span class="paid">已結清 ✓</span></td></tr>
-</table>
-<h3>估價明細</h3>
-<table>
-<tr><th>項目</th><th>金額</th><th>備註</th></tr>
-  <tr><td>阿傑協助拆解舊的木板裝潢</td><td>$33,000</td><td></td></tr>
-</table>
-<h3>付款記錄</h3>
-<table>
-<tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
-  <tr><td>2024/12/29</td><td class="paid">$33,000</td><td>現金</td><td>已結清</td></tr>
-</table>
-</div>
-
-
-
-<div class="section">
-<h2>🧱 泥作估價單彙整（2026/10/04 整理）</h2>
-<div class="note">
-  📋 2026/10/04 重新整理的 4 張泥作估價單，共 21 個工程細項，合計 <strong>$676,120</strong>。<br>
-  ⚠️ <strong>付款狀態</strong>：No. 2-3F 廁所（$178,200）、No. torl（$206,550）、No. 化糞池（$51,620）三張<strong>尚未付款</strong>。No. 最先的（$239,750）已付 $200,000（其餘 $39,750 待付）。泥作待付合計 $476,120。
-</div>
-<table>
-  <tr><th>估價單編號</th><th>案由</th><th>估價日期</th><th>項目數</th><th>稅別</th><th>金額</th></tr>
-  <tr><td>No. 2-3F 廁所</td><td>二、三樓浴室泥作防水貼磚工程</td><td>115/06/15</td><td>4</td><td>未稅</td><td>$178,200</td></tr>
-  <tr><td>No. 最先的</td><td>一樓浴室粉粗底/做彈性防水/貼磁磚</td><td>115年7月</td><td>6</td><td>含工料</td><td>$239,750</td></tr>
-  <tr><td>No. torl</td><td>頂樓及3F廚房地板打除做彈性水泥</td><td>115/03/30</td><td>3</td><td>含工料</td><td>$206,550</td></tr>
-  <tr><td>No. 化糞池材料</td><td>客廳挖水管、灌管溝、材料與點工</td><td>115/08/28</td><td>8</td><td>含工料</td><td>$51,620</td></tr>
-  <tr class="total"><td colspan="5">合計（4 張估價單）</td><td class="total">$676,120</td></tr>
-</table>
-
-<h3>No. 2-3F 廁所｜二、三樓浴室泥作防水貼磚（115/06/15，未稅）</h3>
-<table>
-  <tr><th>工程項目</th><th>施作部位/細項</th><th>規格尺寸</th><th>數量</th><th>單位</th><th>單價</th><th>金額</th></tr>
-  <tr><td>二樓浴室牆面泥作貼磚</td><td>粗底粉平、做彈性防水、貼壁磚</td><td>25.2尺 x 8尺</td><td>5.6</td><td>坪</td><td>$13,500</td><td>$75,600</td></tr>
-  <tr><td>二樓浴室地面泥作貼磚</td><td>地面洩水坡度、彈性防水、貼地磚</td><td>1坪</td><td>1</td><td>坪</td><td>$13,500</td><td>$13,500</td></tr>
-  <tr><td>三樓浴室牆面泥作貼磚</td><td>粗底粉平、做彈性防水、貼壁磚</td><td>25.4尺 x 8尺</td><td>5.6</td><td>坪</td><td>$13,500</td><td>$75,600</td></tr>
-  <tr><td>三樓浴室地面泥作貼磚</td><td>地面洩水坡度、彈性防水、貼地磚</td><td>1坪</td><td>1</td><td>坪</td><td>$13,500</td><td>$13,500</td></tr>
-  <tr class="total"><td colspan="6">小計（未稅）</td><td>$178,200</td></tr>
-</table>
-
-<h3>No. 最先的｜一樓浴室粉粗底/做彈性防水/貼磁磚（115年7月，含工料）</h3>
-<table>
-  <tr><th>工程項目</th><th>施作部位/細項</th><th>規格尺寸</th><th>數量</th><th>單位</th><th>單價</th><th>金額</th></tr>
-  <tr><td>一樓浴室地面泥作防水貼磚（右）</td><td>粉粗底、做彈性防水、貼磁磚（右邊地）</td><td>0.7坪</td><td>0.7</td><td>坪</td><td>$11,000</td><td>$7,700</td></tr>
-  <tr><td>一樓浴室地面泥作防水貼磚（左）</td><td>粉粗底、做彈性防水、貼磁磚（左邊地）</td><td>3.4坪</td><td>3.4</td><td>坪</td><td>$11,000</td><td>$37,400</td></tr>
-  <tr><td>流理台泥作粉光</td><td>流理台表面粉光處理</td><td>0.5坪</td><td>0.5</td><td>坪</td><td>$11,000</td><td>$5,500</td></tr>
-  <tr><td>一樓浴室局部牆面貼磁磚</td><td>牆面磁磚鋪貼</td><td>3坪</td><td>3</td><td>坪</td><td>$5,000</td><td>$15,000</td></tr>
-  <tr><td>一樓浴室大面積牆面貼磚</td><td>牆面粉粗底、做彈性防水、貼磁磚</td><td>25.6尺 x 8.18尺（15.34坪）</td><td>15.34</td><td>坪</td><td>$11,000</td><td>$168,750</td></tr>
-  <tr><td>相關工程工資/工序差額調節</td><td>工資、耗損及原單總計差額核算調節</td><td>1式</td><td>1</td><td>式</td><td>$5,400</td><td>$5,400</td></tr>
-  <tr class="total"><td colspan="6">小計（含工料）</td><td>$239,750</td></tr>
-</table>
-
-<h3>No. torl｜頂樓及3F廚房地板打除做彈性水泥（115/03/30，含工料）</h3>
-<table>
-  <tr><th>工程項目</th><th>施作部位/細項</th><th>規格尺寸</th><th>數量</th><th>單位</th><th>單價</th><th>金額</th></tr>
-  <tr><td>頂樓地板打除做彈性水泥</td><td>頂樓地面舊層打除清運、施作彈性水泥防水層</td><td>7.5坪</td><td>7.5</td><td>坪</td><td>$8,500</td><td>$63,750</td></tr>
-  <tr><td>3樓廚房地板打除做彈性水泥</td><td>3樓廚房地面打除清運、施作彈性水泥防水層</td><td>16.8坪（全區實作）</td><td>16.8</td><td>坪</td><td>$8,500</td><td>$142,800</td></tr>
-  <tr><td>地板打除做彈性水泥（備查）</td><td>原單註記全棟地板總坪數 81坪（單價$2,500備查），不重複計入總額</td><td>81坪（參照）</td><td>—</td><td>坪</td><td>$2,500</td><td>$0</td></tr>
-  <tr class="total"><td colspan="6">小計（含工料）</td><td>$206,550</td></tr>
-</table>
-
-<h3>No. 化糞池｜客廳挖水管、灌管溝、化糞池材料與點工（115/08/28，含工料）</h3>
-<table>
-  <tr><th>工程項目</th><th>施作部位/細項</th><th>規格尺寸</th><th>數量</th><th>單位</th><th>單價</th><th>金額</th></tr>
-  <tr><td>水泥與相關耗材款</td><td>泥作施作水泥材料</td><td>1式</td><td>1</td><td>式</td><td>$1,720</td><td>$1,720</td></tr>
-  <tr><td>客廳挖水管工程（大工）</td><td>客廳地面水管管路開挖打鑿</td><td>大工 1.5</td><td>1.5</td><td>工</td><td>$3,500</td><td>$5,250</td></tr>
-  <tr><td>客廳挖水管工程（小工/雜工）</td><td>客廳水管開挖配合出工</td><td>1.5小工</td><td>1.5</td><td>工</td><td>$2,000</td><td>$3,000</td></tr>
-  <tr><td>灌管溝混凝土工程</td><td>6/10管溝回填澆灌混凝土保護層</td><td>1米</td><td>1</td><td>式</td><td>$3,500</td><td>$3,500</td></tr>
-  <tr><td>灌管溝混凝土工程（工資）</td><td>6/10管溝回填，現場雙人出工</td><td>兩人</td><td>2</td><td>工</td><td>$1,500</td><td>$3,000</td></tr>
-  <tr><td>灌管溝混凝土工程（鏟板）</td><td>6/10管溝回填，鏟板耗材</td><td>鏟板</td><td>3</td><td>片</td><td>$300</td><td>$900</td></tr>
-  <tr><td>配電管點工及多期工資彙總</td><td>水電配管與多期出工工資（4/23、5/16、6/2 等）</td><td>多期工資彙總</td><td>1</td><td>式</td><td>$32,250</td><td>$32,250</td></tr>
-  <tr><td>鐵件五金與相關配合項</td><td>估價單註記鐵件與耗材備查項目</td><td>1式</td><td>1</td><td>式</td><td>$2,000</td><td>$2,000</td></tr>
-  <tr class="total"><td colspan="6">小計（含工料）</td><td>$51,620</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>🏗️ 工程總價摘要</h2>
-<table>
-  <tr><th>項目</th><th>金額</th></tr>
-  <tr><td>🔩 鐵工（邱創貴，三張估價單）</td><td>$517,100</td></tr>
-  <tr><td>🏗️ 外牆鷹架（邱創貴，新增工程）</td><td class="warning">待報價（已付頭期款 $100,000）</td></tr>
-  <tr><td>⛏️ 打石（李育堂）</td><td>$50,000</td></tr>
-  <tr><td>🧱 頂樓防水（彭瑞良）</td><td>$150,000</td></tr>
-  <tr><td>🔌 水電（賴維權）</td><td>$403,500</td></tr>
-  <tr><td>🔌 水電（李安煥，前師傅）</td><td>$113,000</td></tr>
-  <tr><td>🪟 鋁門窗</td><td>$298,190</td></tr>
-  <tr><td>👨‍👩‍👧 小舅（陳德金）</td><td>$33,000</td></tr>
-  <tr><td>🧱 泥作（彭瑞良，4 張估價單合計）</td><td>$676,120</td></tr>
-  <tr class="total"><td>工程總價</td><td class="warning">$2,240,910+</td></tr>
-  <tr><td>已付款</td><td class="paid">$1,396,200（含外牆鷹架頭期款 $100,000）</td></tr>
-  <tr class="total"><td>剩餘待付</td><td class="pending">$944,910+（不含鐵工小門窗戶、外牆鷹架）</td></tr>
-</table>
-
-<div class="note">
-  ⚠️ <strong>注意</strong>：邱創貴的小門窗戶、外牆鷹架尚未報價，實際總金額會再增加。
-</div>
-<div class="note">
-  📋 <strong>2026/10/04 新增</strong>：泥作估價單彙整 4 張（$676,120），已计入工程總價。付款狀態待確認。
-</div>
-</div>
-
+// Chart 3: Line (cumulative)
+new Chart(document.getElementById('chartLine'), {
+  type: 'line',
+  data: {
+    labels: ['2024/08','2024/12','2025/04','2025/06','2025/09','2026/01','2026/05','2026/06','2026/08','2026/09'],
+    datasets: [{
+      label: '累計已付款',
+      data: [30000, 63000, 163000, 183000, 283000, 396000, 696000, 946000, 1296000, 1396200],
+      borderColor: '#4299e1', backgroundColor: 'rgba(66,153,225,0.1)',
+      fill: true, tension: 0.3, pointRadius: 5, pointBackgroundColor: '#4299e1',
+      borderWidth: 3
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    scales: {
+      y: { ticks: { callback: v => '$' + (v/10000).toFixed(0) + '萬', font: { size: 11 } } }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => '累計: $' + ctx.parsed.y.toLocaleString() } }
+    }
+  }
+});
+</script>
 </body>
 </html>
