@@ -139,8 +139,8 @@
   <!-- Header -->
   <div class="header">
     <h1>🏠 正展路22號 修繕報告</h1>
-    <div class="date">最後更新：2026/10/04（含今日轉帳）</div>
-    <div class="badge">📋 含 4 張泥作估價單彙整</div>
+    <div class="date">最後更新：2026/10/23（天然氣管路復歸完成）</div>
+    <div class="badge">📋 含 4 張泥作估價單彙整 + 天然氣復歸</div>
   </div>
 
   <!-- Summary Cards -->
@@ -148,8 +148,8 @@
     <div class="card blue">
       <div class="icon">🏗️</div>
       <div class="label">工程總價</div>
-      <div class="value">$2,240,910</div>
-      <div class="sub">含 7 大工程項目</div>
+      <div class="value">$2,248,910</div>
+      <div class="sub">含 7 大工程 + 天然氣復歸 $8,000</div>
     </div>
     <div class="card green">
       <div class="icon">✅</div>
@@ -162,6 +162,12 @@
       <div class="label">待付款</div>
       <div class="value">$744,910</div>
       <div class="sub">不含鷹架、小門窗（待報價）</div>
+    </div>
+    <div class="card red">
+      <div class="icon">🌀</div>
+      <div class="label">天然氣復歸</div>
+      <div class="value">$8,000</div>
+      <div class="sub">2026/10/20 賴維權 完成</div>
     </div>
     <div class="card red">
       <div class="icon">🏦</div>
@@ -197,9 +203,9 @@
           <div class="pct">已付 $400,000（48%）· 待付 $276,120（52%）· 含頂樓防水 $150,000 已結清</div>
         </div>
         <div class="progress-item">
-          <div class="top"><span class="name">🔌 水電（賴維權）</span><span class="amt">$403,500</span></div>
-          <div class="bar-bg"><div class="bar-paid" style="width:87%"></div><div class="bar-pending" style="width:13%"></div></div>
-          <div class="pct">已付 $350,000（87%）· 待付 $53,500（13%）</div>
+          <div class="top"><span class="name">🔌 水電（賴維權）</span><span class="amt">$411,500</span></div>
+          <div class="bar-bg"><div class="bar-paid" style="width:85%"></div><div class="bar-pending" style="width:15%"></div></div>
+          <div class="pct">已付 $350,000（85%）· 待付 $61,500（含天然氣復歸 $8,000，10/20 完成）</div>
         </div>
         <div class="progress-item">
           <div class="top"><span class="name">🪟 鋁門窗</span><span class="amt">$298,190</span></div>
@@ -314,6 +320,7 @@
       <div class="tl-item"><div class="tl-date">2026/08/12</div><div class="tl-content"><strong>邱創貴（鐵工）</strong> · 轉帳 <span class="tl-amt">$200,000</span></div></div>
       <div class="tl-item"><div class="tl-date">2026/10/04</div><div class="tl-content"><strong>彭瑞良（泥作）</strong> · 轉帳 <span class="tl-amt">$200,000</span></div></div>
       <div class="tl-item"><div class="tl-date">2026/09/27</div><div class="tl-content"><strong>邱創貴（鐵工）</strong> · 轉帳 <span class="tl-amt">$100,000</span> 外牆鷹架頭期款</div></div>
+      <div class="tl-item"><div class="tl-date">2026/10/20</div><div class="tl-content"><strong>賴維權（水電）</strong> · 天然氣管路復歸完成 <span class="tl-amt">$8,000</span></div></div>
     </div>
   </div>
 
@@ -324,8 +331,8 @@
   </div>
 
   <div class="footer">
-    正展路22號修繕工程 · 資料整理 2026/10/04<br>
-    📋 泥作估價單 4 張（$676,120）· 付款 15 筆（$1,596,200）
+    正展路22號修繕工程 · 資料整理 2026/10/23<br>
+    📋 泥作估價單 4 張（$676,120）· 付款 16 筆（$1,604,200 含天然氣復歸 $8,000）
   </div>
 </div>
 
@@ -338,10 +345,10 @@ function toggleDetails(id) {
 new Chart(document.getElementById('chartPie'), {
   type: 'doughnut',
   data: {
-    labels: ['泥作 $826,120', '鐵工 $517,100', '水電(賴) $403,500', '鋁門窗 $298,190', '水電(李) $113,000', '打石+小舅 $83,000'],
+    labels: ['泥作 $826,120', '鐵工 $517,100', '水電(賴) $411,500', '鋁門窗 $298,190', '水電(李) $113,000', '天然氣復歸 $8,000'],
     datasets: [{
-      data: [826120, 517100, 403500, 298190, 113000, 83000],
-      backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#1abc9c', '#e74c3c'],
+      data: [826120, 517100, 411500, 298190, 113000, 8000],
+      backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#1abc9c', '#e67e22'],
       borderWidth: 3, borderColor: '#fff', hoverOffset: 8
     }]
   },
