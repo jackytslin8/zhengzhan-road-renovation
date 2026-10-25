@@ -543,14 +543,40 @@
       <button class="details-toggle" onclick="toggleDetails('alu')">📋 展開/收起 鋁門窗完整估價明細</button>
       <div class="details-content" id="alu">
         <div class="detail-block">
-          <div class="detail-block-title">📋 報價摘要</div>
+          <div class="detail-block-title">📋 報價單一：全屋鋁門窗（$262,090）</div>
           <table class="detail">
-            <tr><th>項目</th><th>金額</th></tr>
-            <tr><td>鋁門窗工程（含材料+施工）</td><td>$298,190</td></tr>
-            <tr class="total"><td>合計</td><td>$298,190</td></tr>
-            <tr><td>已付款</td><td>$200,000</td></tr>
-            <tr class="total"><td>待付款</td><td>$98,190</td></tr>
+            <tr><th>樓層</th><th>品項</th><th>規格（寬x高 cm）</th><th>數量</th><th style="text-align:right">單價</th><th style="text-align:right">金額</th></tr>
+            <tr><td>1F</td><td style="text-align:center">側窗</td><td style="text-align:center">134 x 165</td><td style="text-align:right">$3</td><td style="text-align:right">$14,900</td><td style="font-size:12px;color:#718096">44700</td></tr>
+            <tr><td>1F</td><td style="text-align:center">廚房窗</td><td style="text-align:center">116 x 144</td><td style="text-align:right">$1</td><td style="text-align:right">$12,480</td><td style="font-size:12px;color:#718096">12480</td></tr>
+            <tr><td>1F</td><td style="text-align:center">樓梯口</td><td style="text-align:center">134 x 144</td><td style="text-align:right">$1</td><td style="text-align:right">$14,460</td><td style="font-size:12px;color:#718096">14460</td></tr>
+            <tr><td>2F</td><td style="text-align:center">前大窗</td><td style="text-align:center">267 x 165</td><td style="text-align:right">$1</td><td style="text-align:right">$29,680</td><td style="font-size:12px;color:#718096">29680</td></tr>
+            <tr><td>2F</td><td style="text-align:center">三合一門</td><td style="text-align:center">91 x 243（5厚玻璃）</td><td style="text-align:right">$1</td><td style="text-align:right">$16,700</td><td style="font-size:12px;color:#718096">16700</td></tr>
+            <tr><td>2F</td><td style="text-align:center">側窗</td><td style="text-align:center">134 x 165</td><td style="text-align:right">$4</td><td style="text-align:right">$14,900</td><td style="font-size:12px;color:#718096">59600</td></tr>
+            <tr><td>3F</td><td style="text-align:center">3扇窗</td><td style="text-align:center">131 x 147</td><td style="text-align:right">$3</td><td style="text-align:right">$14,660</td><td style="font-size:12px;color:#718096">43980</td></tr>
+            <tr><td>3F</td><td style="text-align:center">女兒房間窗</td><td style="text-align:center">131 x 147</td><td style="text-align:right">$1</td><td style="text-align:right">$14,900</td><td style="font-size:12px;color:#718096">14900</td></tr>
+            <tr><td>3F</td><td style="text-align:center">後側窗</td><td style="text-align:center">118 x 147</td><td style="text-align:right">$1</td><td style="text-align:right">$12,590</td><td style="font-size:12px;color:#718096">12590</td></tr>
+            <tr><td>3F</td><td style="text-align:center">正後窗</td><td style="text-align:center">128 x 140（玻璃挖洞）</td><td style="text-align:right">$1</td><td style="text-align:right">$13,000</td><td style="font-size:12px;color:#718096">13000</td></tr>
+            <tr class="total"><td colspan="5">報價單一合計</td><td style="text-align:right">$262,090</td></tr>
           </table>
+        </div>
+        <div class="detail-block">
+          <div class="detail-block-title">📋 報價單二：門窗加購（$36,100）</div>
+          <table class="detail">
+            <tr><th></th><th>品項</th><th>規格（寬x高 cm）</th><th>數量</th><th style="text-align:right">單價</th><th style="text-align:right">金額</th></tr>
+            <tr><td></td><td style="text-align:center">2F 走道門（水平鎖）</td><td style="text-align:center">91 x 248</td><td style="text-align:right">$1</td><td style="text-align:right">$10,100</td><td style="font-size:12px;color:#718096">10100</td></tr>
+            <tr><td></td><td style="text-align:center">2、3F 浴室門</td><td style="text-align:center">79 x 193</td><td style="text-align:right">$2</td><td style="text-align:right">$7,800</td><td style="font-size:12px;color:#718096">15600</td></tr>
+            <tr><td></td><td style="text-align:center">浴室窗</td><td style="text-align:center">90 x 62</td><td style="text-align:right">$2</td><td style="text-align:right">$5,200</td><td style="font-size:12px;color:#718096">10400</td></tr>
+            <tr class="total"><td></td><td colspan="4">小計（列示項目）</td><td style="text-align:right">$36,100</td></tr>
+          </table>
+        </div>
+        <div class="detail-block">
+          <div class="detail-block-title">🧾 合計</div>
+          <table class="detail">
+            <tr class="total"><td colspan="5">總價</td><td style="text-align:right">$298,190</td></tr>
+            <tr><td colspan="5">已付款</td><td style="text-align:right">$200,000</td></tr>
+            <tr class="total"><td colspan="5">待付款</td><td style="text-align:right">$98,190</td></tr>
+          </table>
+          <p style="font-size:13px; color:#718096; margin-top:8px;">※ 另有丈量記錄：2F前 165x150、2F側 134x150、3F後（廚房）140x128、3F側 147x43、1F側 165x134、1F側 146x116、3F女兒房 129x131（矮40x40）。</p>
         </div>
         <div class="detail-block">
           <div class="detail-block-title">💰 付款記錄</div>
