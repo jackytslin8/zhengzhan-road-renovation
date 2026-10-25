@@ -123,6 +123,30 @@
   table.detail td { padding: 8px; border-bottom: 1px solid #edf2f7; }
   table.detail tr.total td { font-weight: 800; background: #f7fafc; }
 
+
+  /* Vendor tabs */
+  .vendor-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .vendor-tab {
+    padding: 8px 18px; border-radius: 20px; border: 2px solid #e2e8f0;
+    background: #fff; font-size: 14px; font-weight: 600; color: #4a5568;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .vendor-tab:hover { border-color: #4299e1; color: #2b6cb0; }
+  .vendor-tab.active { background: #2b6cb0; border-color: #2b6cb0; color: #fff; }
+  .vendor-panel { display: none; }
+  .vendor-panel.active { display: block; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .vendor-panel .sum-line {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    background: #f7fafc; border-radius: 10px; padding: 10px 14px;
+    font-size: 14px; margin-bottom: 12px;
+  }
+  .vendor-panel .open-btn {
+    display: inline-block; background: #2b6cb0; color: #fff; text-decoration: none;
+    border-radius: 8px; padding: 6px 14px; font-size: 13px; font-weight: 600; margin-top: 10px;
+  }
+  .vendor-panel .open-btn:hover { background: #2c5282; }
+
   /* Footer */
   .footer { text-align: center; color: #a0aec0; font-size: 12px; padding: 24px 0; }
 
@@ -139,8 +163,8 @@
   <!-- Header -->
   <div class="header">
     <h1>🏠 正展路22號 修繕報告</h1>
-    <div class="date">最後更新：2026/10/23（天然氣管路復歸完成）</div>
-    <div class="badge">📋 含 4 張泥作估價單彙整 + 天然氣復歸</div>
+    <div class="date">最後更新：2026/10/25（新增窗戶包鐵框、永豐金餘額更新、廠商明細改分頁）</div>
+    <div class="badge">📋 泥作/鐵工/水電/鋁門窗 明細可分頁檢視</div>
   </div>
 
   <!-- Summary Cards -->
@@ -238,9 +262,20 @@
   </div>
 
   <!-- 泥作 4 張估價單 -->
+    <!-- 廠商估價單分頁 -->
   <div class="section">
-    <h2>🧱 泥作估價單彙整（4 張 / 21 項）</h2>
-    <div class="est-grid">
+    <h2>📑 各廠商估價明細</h2>
+    <div class="vendor-tabs">
+      <button class="vendor-tab active" onclick="showVendor('masonry', this)">🧱 泥作</button>
+      <button class="vendor-tab" onclick="showVendor('iron', this)">🔩 鐵工</button>
+      <button class="vendor-tab" onclick="showVendor('elec-lai', this)">🔌 水電(賴)</button>
+      <button class="vendor-tab" onclick="showVendor('elec-li', this)">💡 水電(李)</button>
+      <button class="vendor-tab" onclick="showVendor('alu', this)">🪟 鋁門窗</button>
+    </div>
+
+    <div class="vendor-panel active" id="tab-masonry">
+      <div class="sum-line"><span>🧱 泥作（彭瑞良）</span><span>總價 <b>$826,120</b> · 已付 <b style="color:#27ae60">$400,000</b> · 待付 <b style="color:#c05621">$276,120</b>（另頂樓防水 $150,000 已結清）</span></div>
+      <div class="est-grid">
       <div class="est-card" style="border-color:#f6ad55; background:#fffaf0;">
         <div class="tag unpaid">🔴 尚未付款</div>
         <div class="name">No. 2-3F 廁所</div>
@@ -269,13 +304,13 @@
         <div class="amount" style="color:#c05621;">$51,620</div>
         <div class="meta">115/08/28 · 含工料 · 8 項</div>
       </div>
-    </div>
-    <div style="margin-top:16px; padding:12px 16px; background:#f7fafc; border-radius:10px; font-size:14px;">
-      <strong>泥作合計 $676,120</strong> · 已付 $400,000 · <strong style="color:#c05621;">待付 $276,120</strong><br>
-      <span style="color:#718096; font-size:12px;">另：頂樓防水 $150,000 已結清（原估價 $374,950，部分項目未施作後重新整理）</span>
-    </div>
-    <button class="details-toggle" onclick="toggleDetails('masonry')">📋 展開/收起 完整估價明細</button>
-    <div class="details-content" id="masonry">
+    
+      <div style="margin-top:12px; padding:12px 16px; background:#f7fafc; border-radius:10px; font-size:14px;">
+        <strong>泥作合計 $676,120</strong> · 已付 $400,000 · <strong style="color:#c05621;">待付 $276,120</strong><br>
+        <span style="color:#718096; font-size:12px;">另：頂樓防水 $150,000 已結清（原估價 $374,950，部分項目未施作後重新整理）</span>
+      </div>
+      <button class="details-toggle" onclick="toggleDetails('masonry')">📋 展開/收起 完整估價明細</button>
+      <div class="details-content" id="masonry">
       <table class="detail">
         <tr><th>估價單</th><th>工程項目</th><th>數量</th><th>單價</th><th>金額</th></tr>
         <tr><td rowspan="4">No. 2-3F 廁所</td><td>二樓浴室牆面（粗底+彈性防水+貼磚）</td><td>5.6坪</td><td>$13,500</td><td>$75,600</td></tr>
@@ -304,24 +339,106 @@
         <tr class="total"><td></td><td>小計（含工料）</td><td></td><td></td><td>$51,620</td></tr>
       </table>
     </div>
-  </div>
+    </div>
 
-  <!-- 鐵工估價單 -->
-  <div class="section">
-    <h2>🔩 鐵工估價單彙整（邱創貴）</h2>
-    <div class="est-grid">
-      <div class="est-card" style="border-color:#f6ad55; background:#fffaf0;">
-        <div class="tag unpaid">🔴 尚未付款</div>
-        <div class="name">窗戶包鐵框（防滲水）</div>
-        <div class="desc">全屋窗戶邊框包鐵皮，避免日後滲水（鐵工施作項目之一）</div>
-        <div class="amount" style="color:#c05621;">$39,200</div>
-        <div class="meta">2026/9/28 與邱創貴師傅議定 · 單價 $400/米 × 全部窗戶共 98 米</div>
+    <div class="vendor-panel" id="tab-iron">
+      <div class="sum-line"><span>🔩 鐵工（邱創貴）</span><span>總價 <b>$556,300</b> · 已付 <b style="color:#27ae60">$300,000</b> · 待付 <b style="color:#c05621">$356,300</b></span></div>
+      <div class="est-grid">
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag partial">🟢 已付 $200,000</div>
+          <div class="name">估價單一：室內工程</div>
+          <div class="desc">牆壁白鐵壁板 78.9坪、樓梯扶手等室內鐵工</div>
+          <div class="amount" style="color:#2c3e50;">$292,700</div>
+          <div class="meta">已付 $200,000 · 待付 $92,700</div>
+        </div>
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag unpaid">🔴 尚未付款</div>
+          <div class="name">估價單二：洗衣間工程</div>
+          <div class="desc">洗衣間鐵工（不含鋼架）</div>
+          <div class="amount" style="color:#c05621;">$126,000</div>
+          <div class="meta">全額待付</div>
+        </div>
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag unpaid">🔴 尚未付款</div>
+          <div class="name">估價單三：3F牆壁+後面牆壁</div>
+          <div class="desc">三樓牆壁及後方牆壁鐵工</div>
+          <div class="amount" style="color:#c05621;">$98,400</div>
+          <div class="meta">全額待付</div>
+        </div>
+        <div class="est-card" style="border-color:#f6ad55; background:#fffaf0;">
+          <div class="tag unpaid">🔴 尚未付款</div>
+          <div class="name">窗戶包鐵框（防滲水）</div>
+          <div class="desc">全屋窗戶邊框包鐵皮，避免日後滲水（鐵工施作項目之一）</div>
+          <div class="amount" style="color:#c05621;">$39,200</div>
+          <div class="meta">2026/9/28 與邱創貴師傅議定 · 單價 $400/米 × 全部窗戶共 98 米</div>
+        </div>
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag partial">🟢 頭期款已付 $100,000</div>
+          <div class="name">外牆鷹架（新增工程）</div>
+          <div class="desc">外牆施工鷹架搭設</div>
+          <div class="amount" style="color:#718096;">總價待報價</div>
+          <div class="meta">2026/09/27 已付頭期款 $100,000</div>
+        </div>
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag unpaid">⚪ 尚未報價</div>
+          <div class="name">小門窗戶</div>
+          <div class="desc">小門窗戶鐵工</div>
+          <div class="amount" style="color:#a0aec0;">待報價</div>
+          <div class="meta"></div>
+        </div>
       </div>
+      <a class="open-btn" href="邱創貴鐵工估價單.html" target="_blank">📄 開啟完整估價單（含付款記錄）↗</a>
     </div>
-    <div style="margin-top:16px; padding:12px 16px; background:#f7fafc; border-radius:10px; font-size:14px;">
-      <strong>鐵工合計 $556,300</strong> · 已付 $300,000 · <strong style="color:#c05621;">待付 $356,300</strong><br>
-      <span style="color:#718096; font-size:12px;">另：外牆鷹架頭期款 $100,000 已付（總價待報價）、小門窗戶尚未報價</span>
+
+    <div class="vendor-panel" id="tab-elec-lai">
+      <div class="sum-line"><span>🔌 水電（賴維權）</span><span>總價 <b>$411,500</b> · 已付 <b style="color:#27ae60">$358,000</b> · 待付 <b style="color:#c05621">$53,500</b>（87%）</span></div>
+      <div class="est-grid">
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag partial">🟢 已付 $350,000</div>
+          <div class="name">全室水電工程</div>
+          <div class="desc">全室水電管路配置與施作（三期付款：5/1 $200,000、8/7 $150,000）</div>
+          <div class="amount" style="color:#2c3e50;">$403,500</div>
+          <div class="meta">待付 $53,500</div>
+        </div>
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag partial">🟢 已付訖</div>
+          <div class="name">天然氣管路復歸</div>
+          <div class="desc">天然氣管路重新接復（10/20 施作、10/23 付訖）</div>
+          <div class="amount" style="color:#2c3e50;">$8,000</div>
+          <div class="meta">✅ 已結清</div>
+        </div>
+      </div>
+      <a class="open-btn" href="賴維權水電估價單.html" target="_blank">📄 開啟完整估價單（含付款記錄）↗</a>
     </div>
+
+    <div class="vendor-panel" id="tab-elec-li">
+      <div class="sum-line"><span>💡 水電（李安煥）</span><span>總價 <b>$113,000</b> · <b style="color:#27ae60">✅ 已結清</b></span></div>
+      <div class="est-grid">
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag partial">🟢 已結清</div>
+          <div class="name">水電前段工程</div>
+          <div class="desc">前期水電工程（2026/01/14 現金結清）</div>
+          <div class="amount" style="color:#2c3e50;">$113,000</div>
+          <div class="meta">✅ 已結清</div>
+        </div>
+      </div>
+      <a class="open-btn" href="李安煥水電估價單.html" target="_blank">📄 開啟完整估價單 ↗</a>
+    </div>
+
+    <div class="vendor-panel" id="tab-alu">
+      <div class="sum-line"><span>🪟 鋁門窗</span><span>總價 <b>$298,190</b> · 已付 <b style="color:#27ae60">$200,000</b> · 待付 <b style="color:#c05621">$98,190</b>（67%）</span></div>
+      <div class="est-grid">
+        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
+          <div class="tag partial">🟢 已付 $200,000</div>
+          <div class="name">全屋鋁門窗工程</div>
+          <div class="desc">全屋鋁門窗換裝（兩期付款：5/26 $100,000、6/30 $100,000）</div>
+          <div class="amount" style="color:#2c3e50;">$298,190</div>
+          <div class="meta">待付 $98,190</div>
+        </div>
+      </div>
+      <a class="open-btn" href="鋁門窗估價單.html" target="_blank">📄 開啟完整估價單（含付款記錄）↗</a>
+    </div>
+  </div>
   </div>
 
   <!-- 付款時間軸 -->
@@ -360,6 +477,15 @@
 </div>
 
 <script>
+
+// Vendor tabs
+function showVendor(id, btn) {
+  document.querySelectorAll('.vendor-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.vendor-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
 function toggleDetails(id) {
   document.getElementById(id).classList.toggle('show');
 }
