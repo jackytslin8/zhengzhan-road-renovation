@@ -148,8 +148,8 @@
     <div class="card blue">
       <div class="icon">🏗️</div>
       <div class="label">工程總價</div>
-      <div class="value">$2,248,910</div>
-      <div class="sub">含 7 大工程 + 天然氣復歸 $8,000</div>
+      <div class="value">$2,288,110</div>
+      <div class="sub">含 7 大工程 + 天然氣復歸 $8,000 + 窗戶包鐵皮 $39,200</div>
     </div>
     <div class="card green">
       <div class="icon">✅</div>
@@ -160,8 +160,8 @@
     <div class="card orange">
       <div class="icon">⏳</div>
       <div class="label">待付款</div>
-      <div class="value">$736,910</div>
-      <div class="sub">不含鷹架、小門窗（待報價）</div>
+      <div class="value">$776,110</div>
+      <div class="sub">不含鷹架、小門窗（待報價）；含窗戶包鐵皮 $39,200</div>
     </div>
     <div class="card red">
       <div class="icon">🌀</div>
@@ -181,7 +181,7 @@
   <div class="alert warn">
     <div class="alert-icon">⚠️</div>
     <div class="alert-text">
-      <strong>資金缺口約 $196,910</strong> — 永豐金餘額 $540,000 不足以支付全部待付款 $736,910。
+      <strong>資金缺口約 $236,110</strong> — 永豐金餘額 $540,000 不足以支付全部待付款 $776,110。
       另有鐵工小門窗戶、外牆鷹架尚未報價，實際金額會再增加。
     </div>
   </div>
@@ -193,9 +193,9 @@
       <div class="chart-wrap"><canvas id="chartPie"></canvas></div>
       <div>
         <div class="progress-item">
-          <div class="top"><span class="name">🔩 鐵工（邱創貴）</span><span class="amt">$517,100</span></div>
+          <div class="top"><span class="name">🔩 鐵工（邱創貴）</span><span class="amt">$556,300</span></div>
           <div class="bar-bg"><div class="bar-paid" style="width:58%"></div><div class="bar-pending" style="width:42%"></div></div>
-          <div class="pct">已付 $300,000（58%）· 待付 $317,100（42%）</div>
+          <div class="pct">已付 $300,000（54%）· 待付 $356,300（46%，含新增窗戶包鐵皮 $39,200）</div>
         </div>
         <div class="progress-item">
           <div class="top"><span class="name">🧱 泥作（彭瑞良）</span><span class="amt">$826,120</span></div>
@@ -301,6 +301,24 @@
     </div>
   </div>
 
+  <!-- 鐵工估價單 -->
+  <div class="section">
+    <h2>🔩 鐵工估價單彙整（邱創貴）</h2>
+    <div class="est-grid">
+      <div class="est-card" style="border-color:#f6ad55; background:#fffaf0;">
+        <div class="tag unpaid">🔴 尚未付款</div>
+        <div class="name">窗戶包鐵框（防滲水）</div>
+        <div class="desc">全屋窗戶邊框包鐵皮，避免日後滲水（鐵工施作項目之一）</div>
+        <div class="amount" style="color:#c05621;">$39,200</div>
+        <div class="meta">2026/10/25 與邱創貴師傅議定 · 單價 $400/米 × 全部窗戶共 98 米</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; padding:12px 16px; background:#f7fafc; border-radius:10px; font-size:14px;">
+      <strong>鐵工合計 $556,300</strong> · 已付 $300,000 · <strong style="color:#c05621;">待付 $356,300</strong><br>
+      <span style="color:#718096; font-size:12px;">另：外牆鷹架頭期款 $100,000 已付（總價待報價）、小門窗戶尚未報價</span>
+    </div>
+  </div>
+
   <!-- 付款時間軸 -->
   <div class="section">
     <h2>📅 付款時間軸</h2>
@@ -331,7 +349,7 @@
   </div>
 
   <div class="footer">
-    正展路22號修繕工程 · 資料整理 2026/10/23<br>
+    正展路22號修繕工程 · 資料整理 2026/10/25<br>
     📋 泥作估價單 4 張（$676,120）· 付款 16 筆（$1,604,200 含天然氣復歸 $8,000）
   </div>
 </div>
@@ -345,9 +363,9 @@ function toggleDetails(id) {
 new Chart(document.getElementById('chartPie'), {
   type: 'doughnut',
   data: {
-    labels: ['泥作 $826,120', '鐵工 $517,100', '水電(賴) $411,500', '鋁門窗 $298,190', '水電(李) $113,000', '天然氣復歸 $8,000'],
+    labels: ['泥作 $826,120', '鐵工 $556,300', '水電(賴) $411,500', '鋁門窗 $298,190', '水電(李) $113,000', '天然氣復歸 $8,000'],
     datasets: [{
-      data: [826120, 517100, 411500, 298190, 113000, 8000],
+      data: [826120, 556300, 411500, 298190, 113000, 8000],
       backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#1abc9c', '#e67e22'],
       borderWidth: 3, borderColor: '#fff', hoverOffset: 8
     }]
@@ -376,7 +394,7 @@ new Chart(document.getElementById('chartBar'), {
     labels: ['泥作\n(彭瑞良)', '鐵工\n(邱創貴)', '水電\n(賴維權)', '鋁門窗', '水電\n(李安煥)', '打石\n(李育堂)', '小舅\n(陳德金)'],
     datasets: [
       { label: '已付款', data: [400000, 300000, 350000, 200000, 113000, 50000, 33000], backgroundColor: '#48bb78', borderRadius: 6 },
-      { label: '待付款', data: [276120, 317100, 53500, 98190, 0, 0, 0], backgroundColor: '#f6ad55', borderRadius: 6 }
+      { label: '待付款', data: [276120, 356300, 53500, 98190, 0, 0, 0], backgroundColor: '#f6ad55', borderRadius: 6 }
     ]
   },
   options: {
