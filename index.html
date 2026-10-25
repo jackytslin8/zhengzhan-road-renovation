@@ -147,6 +147,10 @@
   }
   .vendor-panel .open-btn:hover { background: #2c5282; }
 
+  .detail-block { margin-bottom: 14px; }
+  .detail-block-title { font-weight: 700; font-size: 13px; color: #2b6cb0; background: #ebf8ff; border-radius: 8px 8px 0 0; padding: 8px 12px; border-bottom: 2px solid #bee3f8; }
+  .detail-block table.detail { border: 1px solid #e2e8f0; border-top: none; }
+
   /* Footer */
   .footer { text-align: center; color: #a0aec0; font-size: 12px; padding: 24px 0; }
 
@@ -387,7 +391,48 @@
           <div class="meta"></div>
         </div>
       </div>
-      <a class="open-btn" href="邱創貴鐵工估價單.html" target="_blank">📄 開啟完整估價單（含付款記錄）↗</a>
+      <button class="details-toggle" onclick="toggleDetails('iron')">📋 展開/收起 鐵工完整估價明細</button>
+      <div class="details-content" id="iron">
+        <div class="detail-block">
+          <div class="detail-block-title">估價單一：室內工程（$292,700）</div>
+          <table class="detail">
+            <tr><th>項目</th><th>數量</th><th>單價</th><th>金額</th></tr>
+            <tr><td>牆壁、白鐵壁板</td><td>78.9坪</td><td>$3,000/坪</td><td>$236,700</td></tr>
+            <tr><td>鷹架</td><td>一式</td><td>—</td><td>$50,000</td></tr>
+            <tr><td>打矽立康</td><td>一式</td><td>—</td><td>$6,000</td></tr>
+            <tr class="total"><td colspan="3">小計</td><td>$292,700</td></tr>
+          </table>
+        </div>
+        <div class="detail-block">
+          <div class="detail-block-title">估價單二：洗衣間工程（$126,000，不含小門窗戶）</div>
+          <table class="detail">
+            <tr><th>項目</th><th>數量</th><th>單價</th><th>金額</th></tr>
+            <tr><td>蓋白鐵 琉璃瓦（含3F鋼架）</td><td>10坪</td><td>$9,000/坪</td><td>$90,000</td></tr>
+            <tr><td>牆壁 白鐵壁板（內鋁板）</td><td>12坪</td><td>$3,000/坪</td><td>$36,000</td></tr>
+            <tr><td>小門窗戶</td><td>外加</td><td>—</td><td>另報</td></tr>
+            <tr class="total"><td colspan="3">小計</td><td>$126,000</td></tr>
+          </table>
+        </div>
+        <div class="detail-block">
+          <div class="detail-block-title">估價單三：3F牆壁+後面牆壁（$98,400，115/07/25）</div>
+          <table class="detail">
+            <tr><th>項目</th><th>數量</th><th>單價</th><th>金額</th></tr>
+            <tr><td>3F牆壁骨架</td><td>12坪</td><td>$6,000/坪</td><td>$72,000</td></tr>
+            <tr><td>鷹架</td><td>一式</td><td>—</td><td>$15,000</td></tr>
+            <tr><td>後面牆壁</td><td>3.8坪</td><td>$3,000/坪</td><td>$11,400</td></tr>
+            <tr class="total"><td colspan="3">小計</td><td>$98,400</td></tr>
+          </table>
+        </div>
+        <div class="detail-block">
+          <div class="detail-block-title">💰 付款記錄（已付 $300,000）</div>
+          <table class="detail">
+            <tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
+            <tr><td>2026/08/12</td><td>$200,000</td><td>轉帳</td><td>頭期款</td></tr>
+            <tr><td>2026/09/27</td><td>$100,000</td><td>轉帳</td><td>外牆鷹架頭期款（新增工程）</td></tr>
+          </table>
+        </div>
+      </div>
+      <a class="open-btn" href="邱創貴鐵工估價單.html" target="_blank">📄 開啟完整估價單 ↗</a>
     </div>
 
     <div class="vendor-panel" id="tab-elec-lai">
@@ -408,7 +453,29 @@
           <div class="meta">✅ 已結清</div>
         </div>
       </div>
-      <a class="open-btn" href="賴維權水電估價單.html" target="_blank">📄 開啟完整估價單（含付款記錄）↗</a>
+      <button class="details-toggle" onclick="toggleDetails('elec-lai')">📋 展開/收起 水電(賴)完整估價明細</button>
+      <div class="details-content" id="elec-lai">
+        <div class="detail-block">
+          <div class="detail-block-title">📋 報價摘要</div>
+          <table class="detail">
+            <tr><th>項目</th><th>金額</th></tr>
+            <tr><td>水電工程（含全戶水電）</td><td>$403,500</td></tr>
+            <tr class="total"><td>合計</td><td>$403,500</td></tr>
+            <tr><td>已付款</td><td>$350,000</td></tr>
+            <tr class="total"><td>待付款</td><td>$53,500</td></tr>
+          </table>
+        </div>
+        <div class="detail-block">
+          <div class="detail-block-title">💰 付款記錄</div>
+          <table class="detail">
+            <tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
+            <tr><td>2026/05/01</td><td>$200,000</td><td>轉帳</td><td>第一期款</td></tr>
+            <tr><td>2026/08/07</td><td>$150,000</td><td>轉帳</td><td>第二期款</td></tr>
+            <tr class="total"><td colspan="3">已付款</td><td>$350,000</td></tr>
+          </table>
+        </div>
+      </div>
+      <a class="open-btn" href="賴維權水電估價單.html" target="_blank">📄 開啟完整估價單 ↗</a>
     </div>
 
     <div class="vendor-panel" id="tab-elec-li">
@@ -420,6 +487,23 @@
           <div class="desc">前期水電工程（2026/01/14 現金結清）</div>
           <div class="amount" style="color:#2c3e50;">$113,000</div>
           <div class="meta">✅ 已結清</div>
+        </div>
+      </div>
+      <button class="details-toggle" onclick="toggleDetails('elec-li')">📋 展開/收起 水電(李)完整估價明細</button>
+      <div class="details-content" id="elec-li">
+        <div class="detail-block">
+          <div class="detail-block-title">📋 明細（115年1月14日 · 未稅 · 已結清）</div>
+          <table class="detail">
+            <tr><th>#</th><th>項目</th><th>數量</th><th>金額</th></tr>
+            <tr><td>1</td><td>1F 配管室冷熱 + 加工資</td><td>一式</td><td>$28,500</td></tr>
+            <tr><td>2</td><td>4F 浴室配冷熱水管 + 加工資</td><td>一式</td><td>$13,000</td></tr>
+            <tr><td>3</td><td>2F、3F 浴室配冷水管 + 材料加工資</td><td>一式</td><td>$13,000</td></tr>
+            <tr><td>4</td><td>1F 配污水排水管 + 材料加工資</td><td>一式</td><td>$24,500</td></tr>
+            <tr><td>5</td><td>1F、2F、3F 更換開關盒加開關</td><td>一式</td><td>$28,500</td></tr>
+            <tr><td>6</td><td>1F、2F、3F 加裝弱電箱</td><td>一式</td><td>$13,500</td></tr>
+            <tr><td>7</td><td>抽水肥</td><td>一式</td><td>$5,000</td></tr>
+            <tr class="total"><td colspan="3">合計（未稅）</td><td>$113,000</td></tr>
+          </table>
         </div>
       </div>
       <a class="open-btn" href="李安煥水電估價單.html" target="_blank">📄 開啟完整估價單 ↗</a>
@@ -436,7 +520,29 @@
           <div class="meta">待付 $98,190</div>
         </div>
       </div>
-      <a class="open-btn" href="鋁門窗估價單.html" target="_blank">📄 開啟完整估價單（含付款記錄）↗</a>
+      <button class="details-toggle" onclick="toggleDetails('alu')">📋 展開/收起 鋁門窗完整估價明細</button>
+      <div class="details-content" id="alu">
+        <div class="detail-block">
+          <div class="detail-block-title">📋 報價摘要</div>
+          <table class="detail">
+            <tr><th>項目</th><th>金額</th></tr>
+            <tr><td>鋁門窗工程（含材料+施工）</td><td>$298,190</td></tr>
+            <tr class="total"><td>合計</td><td>$298,190</td></tr>
+            <tr><td>已付款</td><td>$200,000</td></tr>
+            <tr class="total"><td>待付款</td><td>$98,190</td></tr>
+          </table>
+        </div>
+        <div class="detail-block">
+          <div class="detail-block-title">💰 付款記錄</div>
+          <table class="detail">
+            <tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
+            <tr><td>2026/05/26</td><td>$100,000</td><td>轉帳</td><td>第一期款</td></tr>
+            <tr><td>2026/06/30</td><td>$100,000</td><td>轉帳</td><td>材料款</td></tr>
+            <tr class="total"><td colspan="3">已付款</td><td>$200,000</td></tr>
+          </table>
+        </div>
+      </div>
+      <a class="open-btn" href="鋁門窗估價單.html" target="_blank">📄 開啟完整估價單 ↗</a>
     </div>
   </div>
   </div>
