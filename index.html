@@ -613,6 +613,7 @@
       <div class="tl-item"><div class="tl-date">2026/10/04</div><div class="tl-content"><strong>彭瑞良（泥作）</strong> · 轉帳 <span class="tl-amt">$200,000</span></div></div>
       <div class="tl-item"><div class="tl-date">2026/09/27</div><div class="tl-content"><strong>邱創貴（鐵工）</strong> · 轉帳 <span class="tl-amt">$100,000</span> 外牆鷹架頭期款</div></div>
       <div class="tl-item"><div class="tl-date">2026/10/20</div><div class="tl-content"><strong>賴維權（水電）</strong> · 天然氣管路復歸完成 <span class="tl-amt">$8,000</span> ✓ 已付</div></div>
+      <div class="tl-item"><div class="tl-date">2026/10/28</div><div class="tl-content"><strong>邱創貴（鐵工）</strong> · 轉帳 <span class="tl-amt">$200,000</span> 工程款</div></div>
     </div>
   </div>
 
@@ -646,9 +647,9 @@ function toggleDetails(id) {
 new Chart(document.getElementById('chartPie'), {
   type: 'doughnut',
   data: {
-    labels: ['泥作 $826,120', '鐵工 $556,300', '水電(賴) $411,500', '鋁門窗 $298,190', '水電(李) $113,000', '天然氣復歸 $8,000'],
+    labels: ['泥作 $826,120', '鐵工 $556,300', '水電(賴) $403,500', '鋁門窗 $298,190', '水電(李) $113,000', '天然氣復歸 $8,000'],
     datasets: [{
-      data: [826120, 556300, 411500, 298190, 113000, 8000],
+      data: [826120, 556300, 403500, 298190, 113000, 8000],
       backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#1abc9c', '#e67e22'],
       borderWidth: 3, borderColor: '#fff', hoverOffset: 8
     }]
@@ -676,8 +677,8 @@ new Chart(document.getElementById('chartBar'), {
   data: {
     labels: ['泥作\n(彭瑞良)', '鐵工\n(邱創貴)', '水電\n(賴維權)', '鋁門窗', '水電\n(李安煥)', '打石\n(李育堂)', '小舅\n(陳德金)'],
     datasets: [
-      { label: '已付款', data: [400000, 300000, 350000, 200000, 113000, 50000, 33000], backgroundColor: '#48bb78', borderRadius: 6 },
-      { label: '待付款', data: [276120, 356300, 53500, 98190, 0, 0, 0], backgroundColor: '#f6ad55', borderRadius: 6 }
+      { label: '已付款', data: [400000, 500000, 350000, 200000, 113000, 50000, 33000], backgroundColor: '#48bb78', borderRadius: 6 },
+      { label: '待付款', data: [276120, 56300, 53500, 98190, 0, 0, 0], backgroundColor: '#f6ad55', borderRadius: 6 }
     ]
   },
   options: {
@@ -703,7 +704,7 @@ new Chart(document.getElementById('chartLine'), {
     labels: ['2024/08','2024/12','2025/04','2025/06','2025/09','2026/01','2026/05','2026/06','2026/08','2026/09','2026/10'],
     datasets: [{
       label: '累計已付款',
-      data: [30000, 63000, 163000, 183000, 283000, 396000, 696000, 946000, 1296000, 1396200, 1596200],
+      data: [30000, 63000, 163000, 183000, 283000, 396000, 696000, 946000, 1296000, 1396200, 1804200],
       borderColor: '#4299e1', backgroundColor: 'rgba(66,153,225,0.1)',
       fill: true, tension: 0.3, pointRadius: 5, pointBackgroundColor: '#4299e1',
       borderWidth: 3
