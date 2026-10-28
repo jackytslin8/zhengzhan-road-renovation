@@ -230,9 +230,9 @@
           <div class="pct">已付 $400,000（48%）· 待付 $276,120（52%）· 含頂樓防水 $150,000 已結清</div>
         </div>
         <div class="progress-item">
-          <div class="top"><span class="name">🔌 水電（賴維權）</span><span class="amt">$403,500</span></div>
+          <div class="top"><span class="name">🔌 水電（賴維權）</span><span class="amt">$411,500</span></div>
           <div class="bar-bg"><div class="bar-paid" style="width:87%"></div><div class="bar-pending" style="width:13%"></div></div>
-          <div class="pct">已付 $350,000（87%，含天然氣復歸 $8,000）· 待付 $53,500</div>
+          <div class="pct">已付 $358,000（87%，含天然氣復歸 $8,000）· 待付 $53,500</div>
         </div>
         <div class="progress-item">
           <div class="top"><span class="name">🪟 鋁門窗</span><span class="amt">$298,190</span></div>
@@ -427,21 +427,14 @@
     </div>
 
     <div class="vendor-panel" id="tab-elec-lai">
-      <div class="sum-line"><span>🔌 水電（賴維權）</span><span>總價 <b>$403,500</b> · 已付 <b style="color:#27ae60">$350,000</b> · 待付 <b style="color:#c05621">$53,500</b>（87%）</span></div>
+      <div class="sum-line"><span>🔌 水電（賴維權）</span><span>總價 <b>$411,500</b> · 已付 <b style="color:#27ae60">$358,000</b> · 待付 <b style="color:#c05621">$53,500</b>（87%）</span></div>
       <div class="est-grid">
         <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
           <div class="tag partial">🟢 已付 $350,000</div>
           <div class="name">全室水電工程</div>
-          <div class="desc">全室水電管路配置與施作（三期付款：5/1 $200,000、8/7 $150,000）</div>
-          <div class="amount" style="color:#2c3e50;">$403,500</div>
+          <div class="desc">全室水電管路配置與施作＋天然氣管路復歸（三期付款：5/1 $200,000、8/7 $150,000、10/23 $8,000）</div>
+          <div class="amount" style="color:#2c3e50;">$411,500</div>
           <div class="meta">待付 $53,500</div>
-        </div>
-        <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
-          <div class="tag partial">🟢 已付訖</div>
-          <div class="name">天然氣管路復歸</div>
-          <div class="desc">額外計價項目，<b>不含在工程總價 $403,500 內</b>（10/20 施作、10/23 付訖）</div>
-          <div class="amount" style="color:#2c3e50;">$8,000</div>
-          <div class="meta">✅ 已結清（額外）</div>
         </div>
       </div>
       <button class="details-toggle" onclick="toggleDetails('elec-lai')">📋 展開/收起 水電(賴)完整估價明細</button>
@@ -480,11 +473,11 @@
         <div class="detail-block">
           <div class="detail-block-title">🧾 合計</div>
           <table class="detail">
-            <tr class="total"><td>總價</td><td style="text-align:right">$403,500</td><td></td></tr>
-            <tr><td>已付款</td><td style="text-align:right">$350,000</td><td></td></tr>
+            <tr class="total"><td>總價</td><td style="text-align:right">$411,500</td><td></td></tr>
+            <tr><td>已付款</td><td style="text-align:right">$358,000</td><td></td></tr>
             <tr class="total"><td>待付款</td><td style="text-align:right">$53,500</td><td></td></tr>
           </table>
-          <p style="font-size:13px; color:#718096; margin-top:8px;">※ 不含裝潢管路開關配置、衛浴設備及燈具器具。<br>※ 天然氣管路復歸 $8,000 為額外計價，不含於總價 $403,500。<br>※ 水錶配置：1樓外牆總水錶；2樓獨立水錶；3+4樓獨立水錶；1樓用水＝總水錶−2樓−(3+4樓)。</p>
+          <p style="font-size:13px; color:#718096; margin-top:8px;">※ 不含裝潢管路開關配置、衛浴設備及燈具器具。<br>※ 水錶配置：1樓外牆總水錶；2樓獨立水錶；3+4樓獨立水錶；1樓用水＝總水錶−2樓−(3+4樓)。</p>
         </div>
         <div class="detail-block">
           <div class="detail-block-title">💰 付款記錄</div>
@@ -492,7 +485,8 @@
             <tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
             <tr><td>2026/05/01</td><td>$200,000</td><td>轉帳</td><td>第一期款</td></tr>
             <tr><td>2026/08/07</td><td>$150,000</td><td>轉帳</td><td>第二期款</td></tr>
-            <tr class="total"><td colspan="3">已付款</td><td>$350,000</td></tr>
+            <tr><td>2026/10/23</td><td>$8,000</td><td>轉帳</td><td>天然氣管路復歸（已併入總價）</td></tr>
+            <tr class="total"><td colspan="3">已付款</td><td>$358,000</td></tr>
           </table>
         </div>
       </div>
@@ -647,10 +641,10 @@ function toggleDetails(id) {
 new Chart(document.getElementById('chartPie'), {
   type: 'doughnut',
   data: {
-    labels: ['泥作 $826,120', '鐵工 $556,300', '水電(賴) $403,500', '鋁門窗 $298,190', '水電(李) $113,000', '天然氣復歸 $8,000'],
+    labels: ['泥作 $826,120', '鐵工 $556,300', '水電(賴) $411,500', '鋁門窗 $298,190', '水電(李) $113,000'],
     datasets: [{
-      data: [826120, 556300, 403500, 298190, 113000, 8000],
-      backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#1abc9c', '#e67e22'],
+      data: [826120, 556300, 411500, 298190, 113000],
+      backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#1abc9c'],
       borderWidth: 3, borderColor: '#fff', hoverOffset: 8
     }]
   },
