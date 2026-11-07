@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李育堂 打石估價單明細</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 760px; margin: 20px auto; padding: 0 20px; background: #f5f5f5; color: #333; }
+  h1 { text-align: center; border-bottom: 3px solid #2c3e50; padding-bottom: 10px; }
+  h2 { margin-top: 0; font-size: 17px; color: #2c3e50; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+  th { background: #2c3e50; color: #fff; padding: 10px; text-align: left; }
+  td { padding: 9px 10px; border-bottom: 1px solid #eee; }
+  .total { font-weight: bold; background: #ecf0f1 !important; }
+  .section { background: #fff; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; color: #fff; }
+  .badge-partial { background: #f39c12; }
+  .back { display: inline-block; margin-bottom: 15px; color: #3498db; text-decoration: none; }
+  .back:hover { text-decoration: underline; }
+  .note { background: #d4edda; padding: 10px; border-radius: 5px; border-left: 4px solid #28a745; margin: 10px 0; font-size: 14px; }
+  .paid { color: #27ae60; }
+  .pending { color: #e67e22; }
+  .sub { padding-left: 30px; color: #555; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回修繕報告</a>
+
+<h1>⛏️ 李育堂 打石估價單（正展路22號）</h1>
+
+<div class="section">
+<table>
+  <tr><th colspan="2">基本資訊</th></tr>
+  <tr><td><strong>廠商</strong></td><td>李育堂壇主（打石）</td></tr>
+  <tr><td><strong>工程</strong></td><td>苗栗市正展路22號 打石工程（含化糞池打除、管溝、清運）</td></tr>
+  <tr><td><strong>工期</strong></td><td>113年8月 ～ 115年11月（4張單：水電估價單 + No 815321/815322/815323）</td></tr>
+  <tr><td><strong>狀態</strong></td><td><span class="badge badge-partial">已收 $70,000</span> — 總結算 共 $79,500，扣未施工部份後實收 $70,000</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>💰 總結算（No 815323，115年11月）</h2>
+<table>
+  <tr><th>項目</th><th style="text-align:right">金額</th><th>狀態</th></tr>
+  <tr><td>工程估計 5 萬元（113/8/19 已付 $30,000 + $20,000）</td><td style="text-align:right" class="paid">$50,000</td><td>已付</td></tr>
+  <tr><td>車資預估</td><td style="text-align:right" class="pending">$20,000</td><td>未付</td></tr>
+  <tr><td>追加水電管溝</td><td style="text-align:right">$16,500</td><td></td></tr>
+  <tr><td class="sub">追加工資：電銬 6 工</td><td style="text-align:right">$18,000</td><td></td></tr>
+  <tr><td class="sub">小工 10 工</td><td style="text-align:right">$15,000</td><td></td></tr>
+  <tr><td>化糞池的廢料（8車1台）</td><td style="text-align:right">$8,000</td><td></td></tr>
+  <tr class="total"><td>共計（$50,000+$16,500+$33,000−$20,000車資）</td><td style="text-align:right">$79,500</td><td></td></tr>
+  <tr><td>扣掉未施工部份（1F 8寸大門、窗下鋁後門等）</td><td style="text-align:right">—</td><td></td></tr>
+  <tr class="total"><td>實收</td><td style="text-align:right" class="paid">$70,000</td><td>元</td></tr>
+</table>
+<div class="note">✅ 金額核對：實收 7 萬元與單據一致。</div>
+</div>
+
+<div class="section">
+<h2>📋 水電估價單（113年 · 計 $16,500）</h2>
+<table>
+  <tr><th>日期</th><th>項目</th><th>工數</th><th style="text-align:right">金額</th></tr>
+  <tr><td>10/1</td><td>電銬</td><td>2工</td><td style="text-align:right">$7,000</td></tr>
+  <tr><td>10/1</td><td>小工</td><td>1工</td><td style="text-align:right">$1,800</td></tr>
+  <tr><td>10/2</td><td>電銬（電源箱、管溝含在內）</td><td>1工</td><td style="text-align:right">$3,500</td></tr>
+  <tr><td>10/2</td><td>小工</td><td>半工</td><td style="text-align:right">$900</td></tr>
+  <tr><td>11/11</td><td>電銬（管溝、冷氣排水含在內）</td><td>半工</td><td style="text-align:right">$1,800</td></tr>
+  <tr><td>11/11</td><td>小工</td><td>半工</td><td style="text-align:right">$900</td></tr>
+  <tr><td></td><td class="sub">化糞池1工、2工級配地板</td><td></td><td></td></tr>
+  <tr><td></td><td>切片消磨</td><td></td><td style="text-align:right">$600</td></tr>
+  <tr class="total"><td colspan="3">計</td><td style="text-align:right">$16,500</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>🗓 工程工期紀錄（No 815321）</h2>
+<table>
+  <tr><th>日期</th><th>內容</th><th>工種</th><th>數量</th><th>備註</th></tr>
+  <tr><td>—</td><td>之前估計 5 萬元</td><td></td><td></td><td></td></tr>
+  <tr><td>113/8/19</td><td>付 3 萬 + 付 2 萬元</td><td></td><td></td><td class="paid">已付 $50,000</td></tr>
+  <tr><td>—</td><td>追加工程：水電管溝 $16,500</td><td></td><td></td><td></td></tr>
+  <tr><td>113/12/30</td><td>PU 分電到屋前</td><td>木工</td><td>半工</td><td></td></tr>
+  <tr><td>114/2/19</td><td>垃圾總清 人工、車資</td><td>人工</td><td></td><td>免費中 $3,000，回收補貼</td></tr>
+  <tr><td>114/3/4</td><td>頂樓門、窗</td><td>電銬</td><td>半工</td><td></td></tr>
+  <tr><td>114/4/22</td><td>化糞池降地板</td><td>電銬</td><td>1工</td><td></td></tr>
+  <tr><td></td><td class="sub">同上</td><td>木工</td><td>半工</td><td></td></tr>
+  <tr><td>114/4/25</td><td>化糞池排溝挖</td><td>木工</td><td>半工</td><td></td></tr>
+  <tr><td>114/4/29</td><td>化糞池挖打地板</td><td>電銬</td><td>1工</td><td></td></tr>
+  <tr><td></td><td class="sub">同上</td><td>木工</td><td>1工</td><td></td></tr>
+  <tr><td>115/5/22</td><td>化糞蓋打除</td><td>電銬</td><td>半工</td><td></td></tr>
+  <tr><td></td><td class="sub">抽水肥（水電行）</td><td>木工</td><td>半工</td><td></td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>⛏️ 打石工期紀錄（No 815322）</h2>
+<table>
+  <tr><th>日期</th><th>內容</th><th>工種</th><th>數量</th><th>備註</th></tr>
+  <tr><td>114/5/23</td><td>化糞池隔間打X</td><td>電鑽</td><td>半工</td><td></td></tr>
+  <tr><td></td><td class="sub">（紅包1個200元）</td><td>小工</td><td>半工</td><td></td></tr>
+  <tr><td>114/5/24</td><td>挖糞管</td><td>木工</td><td>1工</td><td>免</td></tr>
+  <tr><td>114/6/13</td><td>挖化糞池追加（缶做）</td><td>電鑽</td><td>1工</td><td></td></tr>
+  <tr><td></td><td class="sub">+開關盒</td><td>木工</td><td>2工</td><td></td></tr>
+  <tr><td>114/6/14</td><td>打管溝</td><td>電銬</td><td>半工</td><td></td></tr>
+  <tr><td>114/6/20</td><td>污水管頭打挖</td><td>電銬</td><td>1工</td><td></td></tr>
+  <tr><td></td><td class="sub">同上</td><td>木工</td><td>1工</td><td></td></tr>
+  <tr><td>114/6/23</td><td>回填土管溝</td><td>小工</td><td>半工</td><td></td></tr>
+  <tr><td>114/6/28</td><td>挑化糞池料到外頭</td><td>小工</td><td>2工</td><td></td></tr>
+  <tr><td></td><td>垃圾廢料</td><td>車</td><td>1台</td><td></td></tr>
+  <tr><td>115/5/5</td><td>3A拆冷氣外機、窗下仁</td><td>半工</td><td></td><td></td></tr>
+  <tr><td>115/5/6</td><td>市場垃圾；5/12 車運收</td><td>車</td><td></td><td></td></tr>
+  <tr><td>115/5/25</td><td>總清後面垃圾</td><td>木工</td><td>半工</td><td></td></tr>
+</table>
+</div>
+
+<a class="back" href="index.html">← 返回修繕報告</a>
+</body></html>
