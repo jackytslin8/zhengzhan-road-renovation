@@ -245,9 +245,9 @@
           <div class="pct">✅ 已結清</div>
         </div>
         <div class="progress-item">
-          <div class="top"><span class="name">⛏️ 打石（李育堂）</span><span class="amt">$50,000</span></div>
-          <div class="bar-bg"><div class="bar-paid bar-done" style="width:100%"></div></div>
-          <div class="pct">✅ 已結清（$30,000 + $20,000 兩筆付清）</div>
+          <div class="top"><span class="name">⛏️ 打石（李育堂）</span><span class="amt">$120,000</span></div>
+          <div class="bar-bg"><div class="bar-paid" style="width:42%"></div><div class="bar-pending" style="width:58%"></div></div>
+          <div class="pct">已付 $50,000（42%，$30,000+$20,000 兩筆）· 待付 $70,000（58%）</div>
         </div>
         <div class="progress-item">
           <div class="top"><span class="name">👷 小舅（陳德金）</span><span class="amt">$33,000</span></div>
@@ -656,10 +656,10 @@ function toggleDetails(id) {
 new Chart(document.getElementById('chartPie'), {
   type: 'doughnut',
   data: {
-    labels: ['泥作 $826,120', '鐵工 $556,300', '水電(賴) $411,500', '鋁門窗 $298,190', '水電(李) $113,000'],
+    labels: ['泥作 $826,120', '鐵工 $556,300', '水電(賴) $411,500', '鋁門窗 $298,190', '打石(李) $120,000', '水電(李) $113,000'],
     datasets: [{
-      data: [826120, 556300, 411500, 298190, 113000],
-      backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#1abc9c'],
+      data: [826120, 556300, 411500, 298190, 120000, 113000],
+      backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#e67e22', '#1abc9c'],
       borderWidth: 3, borderColor: '#fff', hoverOffset: 8
     }]
   },
@@ -687,7 +687,7 @@ new Chart(document.getElementById('chartBar'), {
     labels: ['泥作\n(彭瑞良)', '鐵工\n(邱創貴)', '水電\n(賴維權)', '鋁門窗', '水電\n(李安煥)', '打石\n(李育堂)', '小舅\n(陳德金)'],
     datasets: [
       { label: '已付款', data: [400000, 500000, 350000, 200000, 113000, 50000, 33000], backgroundColor: '#48bb78', borderRadius: 6 },
-      { label: '待付款', data: [276120, 56300, 53500, 98190, 0, 0, 0], backgroundColor: '#f6ad55', borderRadius: 6 }
+      { label: '待付款', data: [276120, 56300, 53500, 98190, 0, 70000, 0], backgroundColor: '#f6ad55', borderRadius: 6 }
     ]
   },
   options: {
