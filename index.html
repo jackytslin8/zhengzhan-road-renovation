@@ -220,9 +220,9 @@
       <div class="chart-wrap"><canvas id="chartPie"></canvas></div>
       <div>
         <div class="progress-item">
-          <div class="top"><span class="name">🔩 鐵工（邱創貴）</span><span class="amt">$556,300</span></div>
+          <div class="top"><span class="name">🔩 鐵工（邱創貴）</span><span class="amt">$604,600</span></div>
           <div class="bar-bg"><div class="bar-paid" style="width:90%"></div><div class="bar-pending" style="width:10%"></div></div>
-          <div class="pct">已付 $500,000（90%）· 待付 $56,300（10%，含新增窗戶包鐵皮 $39,200）</div>
+          <div class="pct">已付 $500,000（90%）· 待付 $65,400（10%，含新增窗戶包鐵皮 $39,200）</div>
         </div>
         <div class="progress-item">
           <div class="top"><span class="name">🧱 泥作（彭瑞良）</span><span class="amt">$826,120</span></div>
@@ -343,7 +343,7 @@
     </div>
 
     <div class="vendor-panel" id="tab-iron">
-      <div class="sum-line"><span>🔩 鐵工（邱創貴）</span><span>總價 <b>$556,300</b> · 已付 <b style="color:#27ae60">$500,000</b> · 待付 <b style="color:#c05621">$56,300</b></span></div>
+      <div class="sum-line"><span>🔩 鐵工（邱創貴）</span><span>總價 <b>$604,600</b> · 已付 <b style="color:#27ae60">$500,000</b> · 待付 <b style="color:#c05621">$65,400</b></span></div>
       <div class="est-grid">
         <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
           <div class="tag partial">🟢 已付 $200,000</div>
@@ -367,6 +367,12 @@
           <div class="desc">全屋窗戶邊框包鐵皮，避免日後滲水（鐵工施作項目之一）</div>
           <div class="amount" style="color:#c05621;">$39,200</div>
           <div class="meta">2026/9/28 與邱創貴師傅議定 · 單價 $400/米 × 全部窗戶共 98 米</div>
+        </div>
+        <div class="est-card" style="border-color:#f6ad55; background:#fffaf0;">
+          <div class="name">16個窗戶加包鐵皮（新增工程）</div>
+          <div class="desc">窗收邊 161 × $300，共16個窗戶，含包鐵皮工數（新增項目）</div>
+          <div class="amount" style="color:#c05621;">$48,300</div>
+          <div class="meta">2026/11/25 議定加價 · 已付 $200,000</div>
         </div>
         <div class="est-card" style="border-color:#e2e8f0; background:#f7fafc;">
           <div class="tag partial">🟢 頭期款已付 $100,000</div>
@@ -415,12 +421,13 @@
           </table>
         </div>
         <div class="detail-block">
-          <div class="detail-block-title">💰 付款記錄（已付 $500,000）</div>
+          <div class="detail-block-title">💰 付款記錄（已付 $600,000）</div>
           <table class="detail">
             <tr><th>日期</th><th>金額</th><th>方式</th><th>備註</th></tr>
             <tr><td>2026/08/12</td><td>$200,000</td><td>轉帳</td><td>頭期款</td></tr>
             <tr><td>2026/09/27</td><td>$100,000</td><td>轉帳</td><td>外牆鷹架頭期款（新增工程）</td></tr>
             <tr><td>2026/10/28</td><td>$200,000</td><td>轉帳</td><td>工程款</td></tr>
+            <tr><td>2026/11/25</td><td>$200,000</td><td>轉帳</td><td>追加16窗戶加包鐵皮工程款</td></tr>
           </table>
         </div>
       </div>
@@ -660,7 +667,7 @@ function toggleDetails(id) {
 new Chart(document.getElementById('chartPie'), {
   type: 'doughnut',
   data: {
-    labels: ['泥作 $826,120', '鐵工 $556,300', '水電(賴) $423,500', '鋁門窗 $298,190', '打石(李) $120,000', '水電(李) $113,000'],
+    labels: ['泥作 $826,120', '鐵工 $604,600', '水電(賴) $423,500', '鋁門窗 $298,190', '打石(李) $120,000', '水電(李) $113,000'],
     datasets: [{
       data: [826120, 556300, 423500, 298190, 120000, 113000],
       backgroundColor: ['#5b8def', '#f2994a', '#27ae60', '#9b59b6', '#e67e22', '#1abc9c'],
